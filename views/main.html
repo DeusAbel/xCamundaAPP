@@ -27,9 +27,9 @@
     <!-- Logo -->
     <a href="../../index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>(x)</b>Go</span>
+      <span class="logo-mini"><b>xC</b>da</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>xC</b>amunda</span>
+      <span class="logo-lg"><b>xC</b>amundaAPP</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -95,7 +95,7 @@
 
   <!-- =============================================== -->
 
-  <!-- Content Wrapper. Contains page content -->
+  <!-- INSTANCIAS DE PROCESO -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
        <!-- Left side column. contains the sidebar -->
@@ -103,27 +103,84 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <ul class="sidebar-menu">
-        <li class="header">INSTANCIAS DE PROCESO<span class="pull-right"><button>Iniciar proceso</button></span></li>  
-        
+        <li class="header">INSTANCIAS DE PROCESO<span class="pull-right"><button class="btn btn-info" type="button" data-target="#iniciarProceso" data-toggle="modal">Iniciar proceso</button></span>       
+        </li>
+
+
+
+<!-- Modal -->
+        <div id="iniciarProceso" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+              </div>
+              <div class="modal-body">
+                <p>Some text in the modal.</p>
+
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </ul>
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu"  style="height: 200px; overflow: auto; ">
-              
-        <li ng-repeat="proceso in procesos"><a href="{{process.id}}"><i class="fa fa-user"></i> <span>{{proceso.nombre}}</span></a></li>
-
+      <ul class="sidebar-menu"  style="height: 200px; overflow: auto; ">    
         
+        <table class="table table-bordered table-striped" id='crud-table'>
+          <thead>
+            <tr>
+              <th class="text-center" id="ID" type="text" prime="true" static="true">ID</th>
+              <th class="text-center" id="NOMBRE PROCESO" type="text">NOMBRE PROCESO</th>
+              <th class="text-center" id="FECHA DE CREACION" type="text">FECHA DE CREACION</th>              
+              <th>Editar</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+                
+          <tbody>
+            <tr ng-repeat="instanproceso in instanprocesos">              
+              <td type="text">{{instanproceso.id}}</td>
+              <td type="text">{{instanproceso.nombre}}</td>
+              <td type="text">{{instanproceso.fecha}}</td>              
+              <td><button class="btn btn-info" value="Editar"/></td>
+              <td><button class="btn btn-Warning" value="Eliminar"/></td>              
+            </tr>
+          </tbody>
 
+        </table>
+
+        <!--
+          <li ng-repeat="proceso in procesos"><a href="{{process.id}}"><i class="fa fa-user"></i> <span>{{proceso.nombre}}</span></a>
+        -->  
         
+        </li>     
+
       </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
-    <aside class="sidebar-nav">
+
+  <!-- LISTA DE TAREAS -->
+  <aside class="sidebar-nav">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar-nav">
-      <!-- sidebar menu: : style can be found in sidebar.less -->
+      
       <ul class="sidebar-menu">
-        <li class="header">TASK LIST</li>        
+        <li class="header">LISTA DE TAREAS<span class="pull-right"><button>Iniciar proceso</button></span></li>  
+        
+      </ul>
+
+      <ul class="sidebar-menu"  style="height: 200px; overflow: auto; ">
+     
         <li ng-repeat="proceso in procesos"><a href="/views/processlist/{{process.id}}"><i class="fa fa-user"></i> <span>{{proceso.nombre}}</span></a></li>
         <li><a href="/views/processlist/{{process.id}}"><i class="fa fa-delicious"></i> <span>Process Test</span></a></li>
       </ul>
