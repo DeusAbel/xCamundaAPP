@@ -1,35 +1,29 @@
-var app = angular.module('xCamundaAPP', ['pinstanslistService']);
+var app = angular.module('xCamundaAPP');
+app.controller('pinstanslistController', function ($scope){
 
-app.controller('pinstanslistController', ['$scope', 'pinstanslistRequest', pinstanslistController]);
+    console.log("plist la ptmr");
 
-function pinstanslistController ($scope, pinstanslistRequest){
+    $scope.proceso_actual="1";
+    //$scope.pinstan = {};  
+    $scope.pinstanslist = [
+        {
+            "id" : "123456789",
+            "nombre" : "Instancia Proceso 1.1",
+            "fecha" : "01/07/2017"
+        },        {
+            "id" : "123456789",
+            "nombre" : "Instancia Proceso 1.2",
+            "fecha" : "02/07/2017"
+        },        {
+            "id" : "123456789",
+            "nombre" : "Instancia Proceso 1.3",
+            "fecha" : "03/07/2017"
+        },        {
+            "id" : "123456789",
+            "nombre" : "Instancia Proceso 1.4",
+            "fecha" : "04/07/2017"
+        },
+    ];
 
-    var updateMode = false;
 
-    $scope.pinstan = {};
-    $scope.pinstanslists = {};
-
-    $scope.getAllpinstanslists = function(){
-        pinstanslistRequest.getAll().success(function(data){
-            $scope.pinstanslists = data;            
-        });
-    };
-
-    $scope.delete = function(id_pinstan){
-        var pinstan = {};
-        pinstanslist.id_pinstan = id_pinstan;
-
-        pinstanslistRequest.delete(pinstan).success(function(data){
-            $scope.getAllpinstanslists();
-        });
-        
-    }
-
-    $scope.save = function(){
-            pinstanslistRequest.insert($scope.pinstan).success(function(data){
-                $scope.getAllpinstanslists();
-            });     
-    }
-    $scope.getAllpinstanslists();
-
-}
+});

@@ -1,0 +1,42 @@
+  
+<aside class="sidebar-nav" ng-controller="pinstanslistController">
+    <!-- sidebar: style can be found in sidebar.less -->
+    
+    <section class="sidebar">
+      <ul class="sidebar-menu">
+        <li class="header">INSTANCIAS DE PROCESO<span class="pull-right"><button class="btn btn-info" type="button" data-target="#iniciarProceso" data-toggle="modal">Iniciar proceso</button></span>       
+        </li>
+      </ul>
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu"  style="height: 200px; overflow: auto; ">    
+        
+        <table class="table table-bordered table-striped" id='crud-table'>
+          <thead>
+            <tr>
+              <th class="text-center" id="ID" type="text" prime="true" static="true">ID</th>
+              <th class="text-center" id="NOMBRE PROCESO" type="text">NOMBRE PROCESO</th>
+              <th class="text-center" id="FECHA DE CREACION" type="text">FECHA DE CREACION</th>              
+              <th>TAREAS</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+                
+          <tbody>
+            <tr ng-repeat="instanproceso in pinstanslist">              
+              <td type="text">{{instanproceso.id}}</td>
+              <td type="text">{{instanproceso.nombre}}</td>
+              <td type="text">{{instanproceso.fecha}}</td>              
+              <td><a href="#main" class="btn btn-info">Tareas</a></td>
+              <td><button class="btn btn-warning">Eliminar</button></td>              
+            </tr>
+          </tbody>
+
+        </table>
+        
+          <li ng-repeat="proceso in procesos"><a href="{{process.id}}"><i class="fa fa-user"></i> <span>{{proceso.nombre}}</span></a>
+             
+        </li>     
+
+      </ul>
+    </section>
+  </aside>

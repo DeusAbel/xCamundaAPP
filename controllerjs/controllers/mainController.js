@@ -1,7 +1,6 @@
 var app = angular.module('xCamundaAPP',['mainService']);
-app.controller('mainController', ['$scope', 'mainRequest', mainController]);
 
-function mainController($scope,mainRequest){
+app.controller('mainController', function ($scope,mainRequest){
 
     $scope.procesos = [
 		{
@@ -51,6 +50,4 @@ function mainController($scope,mainRequest){
 			$scope.proceso = data;
 		});
 	}
-	
-
-}
+});
