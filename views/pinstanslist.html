@@ -5,23 +5,24 @@
     <section class="sidebar">
       
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu"  style="height: 200px; overflow: auto; ">    
+      
+      <ul class="sidebar-menu" style="height: 200px; overflow: auto;">    
         
         <table class="table table-bordered table-striped" id='crud-table'>
           <thead>
             <tr>
               <th class="text-center" id="ID" type="text" prime="true" static="true">ID</th>
-              <th class="text-center" id="NOMBRE PROCESO" type="text">NOMBRE PROCESO</th>
+              <th class="text-center" id="NOMBRE PROCESO" type="text">BUSINEES KEY</th>
               <th class="text-center" id="FECHA DE CREACION" type="text">FECHA DE CREACION</th>              
               <th>TAREAS</th>
-              <th>Eliminar</th>
+              <th>ELIMINAR</th>
             </tr>
           </thead>
                 
           <tbody>
             <tr ng-repeat="instanproceso in pinstanslist">              
               <td type="text">{{instanproceso.id}}</td>
-              <td type="text">{{instanproceso.nombre}}</td>
+              <td type="text">{{instanproceso.businessKey}}</td>
               <td type="text">{{instanproceso.fecha}}</td>              
               <td><button href="#main" class="btn btn-info">Tareas</button></td>
               <td><button class="btn btn-warning">Eliminar</button></td>              

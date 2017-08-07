@@ -24,4 +24,6 @@ app.controller('pinstanslistController', function ($scope){
             "fecha" : "04/07/2017"
         },
     ];
+
+
 });
