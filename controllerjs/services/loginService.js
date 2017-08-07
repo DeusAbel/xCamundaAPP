@@ -1,7 +1,27 @@
-angular.module('loginService',[])
-	.factory('loginRequest', function($http){
+var app = angular.module('loginService');
+
+app.factory('loginRequest', function($http){
 		var path = "http://localhost/usuarios/";
 		
+    this.pinstanslist = [
+        {
+            "id" : "123456789",
+            "businessKey" : "Instancia Proceso 1.1",
+            "fecha" : "01/07/2017"
+        },        {
+            "id" : "123456789",
+            "businessKey" : "Instancia Proceso 1.2",
+            "fecha" : "02/07/2017"
+        },        {
+            "id" : "123456789",
+            "businessKey" : "Instancia Proceso 1.3",
+            "fecha" : "03/07/2017"
+        },        {
+            "id" : "123456789",
+            "businessKey" : "Instancia Proceso 1.4",
+            "fecha" : "04/07/2017"
+        },
+    ];
 		var myHeaders = {
 	            'accept': 'application/json',
 	            'accept-encoding': 'gzip, deflate',
@@ -15,9 +35,7 @@ angular.module('loginService',[])
 				var config = { headers:  myHeaders }
 				
 				global = $http.post(path + 'checkLogin', user, config);
-				
-				//return global;
-				return "Hola"
+
 			}
 		}
 	})

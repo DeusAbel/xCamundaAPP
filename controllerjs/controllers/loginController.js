@@ -1,18 +1,22 @@
-angular.module('xCamundaAPP', ['loginService']);
+var app = angular.module('xCamundaAPP');
 
-angular.module('xCamundaAPP').controller('loginController', ['$scope', '$window', 'loginRequest', loginController]);
-function loginController($scope, $window, loginRequest, mainRequest){
+app.controller('loginController',function loginController($scope){
 	
-	$scope.user = {};
-	
-	$scope.checkLogin = function(){
-		console.log('CheckLogin');
-		$window.location.href = 'main.html';
-		/*loginRequest.checkLogin($scope.user).success(function(data){
-						
-			if (data){
-				$window.location.href = 'main.html';
-			}
-		});*/
+	$scope.usuario = {
+			"id" : "0",
+	        "nombre" : "anonimo",
+			"clave" : "anonimo"
 	};
-}
+
+
+	$scope.loginSrv = function(){
+        console.log($scope.usuario.nombre + "/"+ $scope.usuario.clave);
+        if ($scope.usuario.nombre=="abel" && $scope.usuario.clave=="1234"){
+			console.log("Logeado con exito");
+		}else{
+			console.log("Error en el logeado");
+		}
+        
+    } 
+
+});
