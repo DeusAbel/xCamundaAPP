@@ -5,7 +5,7 @@
     <section class="sidebar">
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" > 
+        <ul class="sidebar-menu">
             <!--                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalProcessVariable">prueba</button>-->
 
             <!-- Modal -->
@@ -19,36 +19,48 @@
                             <h4 class="modal-title">Instanciar un proceso</h4>
                         </div>
                         <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <label>Bussiness Key</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input name="key" type="text" class="form-control">
+                                </div>
+                            </div>
+
+
                             <table style="width: 100%" class="table table-bordered table-striped" id='crud-table'>
                                 <thead>
                                     <tr>
                                         <th class="text-center" id="NOMBRE PROCESO" type="text">NOMBRE VARIABLE</th>
                                         <th class="text-center" id="FECHA DE CREACION" type="text">TIPO DE VARIABLE</th>
-                                        <th class="text-center" id="FECHA DE CREACION" type="text">VALOR DE VARIABLE</th> 
+                                        <th class="text-center" id="FECHA DE CREACION" type="text">VALOR DE VARIABLE</th>
                                         <th>Modificar</th>
                                         <th>Eliminar</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <tr ng-repeat="pinstanVariable in pinstanVariables">              
-                                        <td> <input type="text" ng-model="pinstanVariable.nombre" readonly=true></td>
-                                        <td> <select>
-                                            <option ng-repeat="row in tipoVariable" value="{{row.valor}}" 
-                                                    ng-selected="row.valor == pinstanVariable.tipo" ng-disabled="true">{{row.texto}}</option>
+                                    <tr ng-repeat="pinstanVariable in pinstanVariables">
+                                        <td> <input type="text" class="form-control" ng-model="pinstanVariable.nombre" ng-disabled="pinstanVariable.modificar"></td>
+                                        <td> <select class="form-control" ng-disabled="pinstanVariable.modificar">
+                                            <option  ng-repeat="row in tipoVariable" value="{{row.valor}}" 
+                                                    ng-selected="row.valor == pinstanVariable.tipo" >{{row.texto}}</option>
                                             </select></td>
-                                        <td> <input type="text" ng-model="pinstanVariable.valor" readonly=true></td>              
-                                        <td><button class="btn btn-info" ng-click="ModificarVariable()" value="Modificar"/></td>
-                                        <td><button class="btn btn-Warning" ng-click="EliminarVariable()" value="Eliminar"/></td>
+                                        <td> <input type="text" class="form-control" ng-model="pinstanVariable.valor" ng-disabled="bolModificar"></td>
+                                        <td><button class="btn btn-info form-control" ng-click="ModificarVariable(pinstanVariable)" value="Modificar">{{btntextoGuardarVariable}}</button></td>
+                                        
+                                        <td><button class="btn btn-Warning form-control" ng-click="EliminarVariable()" value="Eliminar">Eliminar</button></td>
 
                                     </tr>
-                                </tbody>                                           
+                                </tbody>
                             </table>
 
 
 
                         </div>
                         <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Iniciar Proceso</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
