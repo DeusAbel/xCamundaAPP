@@ -1,7 +1,5 @@
-var app = angular.module('xCamundaAPP',['pinstanslistdetailsService']);
-app.controller('pinstanslistdetailsController', ['$scope', 'pinstanslistdetailsRequest', pinstanslistdetailsController]);
-
-function pinstanslistdetailsController($scope,pinstanslistdetailsRequest){
+var app = angular.module('xCamundaAPP');
+app.controller('pinstanslistdetailsController', function ($scope){
 
     $scope.pinstanVariables = [
         {
@@ -25,4 +23,4 @@ function pinstanslistdetailsController($scope,pinstanslistdetailsRequest){
             "valor" : "Fecha"
         }
     ];
-}
+});
