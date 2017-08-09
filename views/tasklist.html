@@ -1,0 +1,35 @@
+<aside class="sidebar-nav" ng-controller="tasklistController">
+    <!-- sidebar: style can be found in sidebar.less -->
+
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+
+        <ul class="sidebar-menu">
+            <li class="header">LISTA DE TAREAS</li>
+        </ul>
+
+        <ul class="sidebar-menu" style="height: 200px; overflow: auto;">
+
+            <table class="table table-bordered table-striped" id='crud-table'>
+                <thead>
+                    <tr>
+                        <th class="text-center" id="NOMBRE PROCESO" type="text">Nombre tarea</th>
+                        <th class="text-center" id="FECHA DE CREACION" type="text">Fecha de creación</th>
+                        <th class="text-center" id="FECHA DE CREACION" type="text">Prioridad</th>
+                        <th>Asignar</th>
+                        <th>Completar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tarea in tareasXInstancia">
+                        <td type="text">{{tarea.name}}</td>
+                        <td type="text">{{tarea.createtime}}</td>
+                        <td type="text">{{tarea.priority}}</td>
+                        <td><button href="#main" class="btn btn-info">Asignar</button></td>
+                        <td><button class="btn btn-warning">Completar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </ul>
+    </section>
+</aside>

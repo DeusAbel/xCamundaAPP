@@ -26,15 +26,19 @@
                                 <div class="col-md-3">
                                     <input name="key" type="text" class="form-control">
                                 </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-info form-control" ng-click="AgregarVariable()" value="Agregar">Agregar Variable</button>
+                                </div>
                             </div>
+
 
 
                             <table style="width: 100%" class="table table-bordered table-striped" id='crud-table'>
                                 <thead>
                                     <tr>
-                                        <th class="text-center" id="NOMBRE PROCESO" type="text">NOMBRE VARIABLE</th>
-                                        <th class="text-center" id="FECHA DE CREACION" type="text">TIPO DE VARIABLE</th>
-                                        <th class="text-center" id="FECHA DE CREACION" type="text">VALOR DE VARIABLE</th>
+                                        <th class="text-center" id="NOMBRE PROCESO" type="text">Nombre Variable</th>
+                                        <th class="text-center" id="FECHA DE CREACION" type="text">Tipo de Variable</th>
+                                        <th class="text-center" id="FECHA DE CREACION" type="text">Valor de Variable</th>
                                         <th>Modificar</th>
                                         <th>Eliminar</th>
                                     </tr>
@@ -47,10 +51,11 @@
                                             <option  ng-repeat="row in tipoVariable" value="{{row.valor}}" 
                                                     ng-selected="row.valor == pinstanVariable.tipo" >{{row.texto}}</option>
                                             </select></td>
-                                        <td> <input type="text" class="form-control" ng-model="pinstanVariable.valor" ng-disabled="bolModificar"></td>
-                                        <td><button class="btn btn-info form-control" ng-click="ModificarVariable(pinstanVariable)" value="Modificar">{{btntextoGuardarVariable}}</button></td>
-                                        
-                                        <td><button class="btn btn-Warning form-control" ng-click="EliminarVariable()" value="Eliminar">Eliminar</button></td>
+                                        <td> <input type="text" class="form-control" ng-model="pinstanVariable.valor" ng-disabled="pinstanVariable.modificar"></td>
+                                        <!--                                        <td><button class="btn btn-info form-control" ng-click="ModificarVariable(pinstanVariable)" value="Modificar">{{btntextoGuardarVariable}}</button></td>-->
+                                        <td><button class="btn btn-info form-control" ng-click="ModificarVariable(pinstanVariable)" value="Modificar">{{pinstanVariable.modificar && 'Modificar' || 'Guardar' }}</button></td>
+
+                                        <td><button class="btn btn-Warning form-control" ng-click="EliminarVariable(pinstanVariable)" value="Eliminar">Eliminar</button></td>
 
                                     </tr>
                                 </tbody>
