@@ -1,8 +1,10 @@
-var app = angular.module('xCamundaAPP',['mainService']);
+var app = angular.module('xCamundaAPP',[]);
 
-app.controller('mainController', function ($scope,mainRequest){
+app.controller('mainController', function ($scope, mainService, loginService){
+	var path = "http://localhost:8080/sig/camunda/procesos";
 
-    $scope.procesos = [
+    /*
+	$scope.procesos = [
 		{
             "id" : "123456789",
             "nombre" : "Proceso 1"
@@ -25,29 +27,42 @@ app.controller('mainController', function ($scope,mainRequest){
             "id" : "123456789",
             "nombre" : "Proceso 7"
         }
-    ];
+    ];*/
+
+	$scope.procesos = [];
 
 	$scope.usuario = 
 		{
             "id" : "123456789",
-            "nombre" : "Administrador"
+            "nombre" : "Anonimo"
 		};
+	
+	$scope.getUser = function(){
+		
+		$scope.usuario.nombre = loginService.usuario.nombreCompleto;			
+		
+	}
 
-	var id = 2;
-	
-	$scope.usuario.nombre = "hola";
-	$scope.usuario.id = "7722b29d3b056e12ee620471726d6610";
-	
-	getUser = function (){
-		mainRequest.getUser(id).success(function(data){
-			$scope.usuario.nombre = data.nombre;
-		});
+	$scope.getProcesos = function(){
+
+		/*$http.get(path)
+            .then(function (data) {
+                $scope.procesos = data.data;          
+                console.log($scope.procesos);
+            }, function(data) {          
+                console.log("error: " + data);
+		});*/
+		mainService.getProcesos().success(function(data){
+            $scope.procesos = data;            
+        });
+		
 	}
 	
+	$scope.getProcesos();
+	/*mainService.setProcesos("qqqqqq");
+	$scope.procesos = mainService.getProcesos();
+	$scope.procesos = mainService.getProcesos();	
+	//$scope.procesos = mainService.getProcesos();*/
+	//console.log("DATOS"+$scope.procesos);
 
-	mostrarProcesos = function(){
-		mainRequest.getProcesos(id).success(function(data){
-			$scope.proceso = data;
-		});
-	}
 });

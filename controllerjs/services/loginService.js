@@ -26,11 +26,13 @@ app.service('loginService', function($http){
 		}else{
 			return null;
 		}*/
-		console.log(user.nombre + "/" + this.usuario.nombre);
+		
+		
 		if (user.nombre == this.usuario.nombre && user.clave == this.usuario.clave)
 			return this.usuario;
 		else
 			return null;
+		
 	}
 
 });

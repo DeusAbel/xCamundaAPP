@@ -1,7 +1,6 @@
 var app = angular.module('xCamundaAPP');
 app.controller('pinstanscreateController', function ($scope) {
 
-    console.log("instanscreateController");
 
     $scope.pinstanVariables = [
         {

@@ -1,7 +1,7 @@
 var app = angular.module('xCamundaAPP');
 app.controller('pinstanslistController', function ($scope){
 
-    console.log("plist la ptmr");
+    
 
     $scope.proceso_actual="1";
     //$scope.pinstan = {};  

@@ -30,12 +30,13 @@ folder instead of downloading all of them to reduce the load. -->
 
         <!-- Angular JS -->
         <!--<script src="../resources/angular-1.4.9/angular.js"></script>-->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+        
 
-        <!--<script src="../app.js"></script>-->
-        <script src="../controllerjs/services/mainService.js"></script> 
+        <!--<script src="../app.js"></script>-->        
         <script src="../controllerjs/controllers/mainController.js"></script>
+        <script src="../controllerjs/services/mainService.js"></script> 
         <script src="../controllerjs/services/pinstanslistService.js"></script> 
         <script src="../controllerjs/controllers/pinstanslistController.js"></script>
         <script src="../controllerjs/services/loginService.js"></script> 
@@ -47,7 +48,7 @@ folder instead of downloading all of them to reduce the load. -->
 
 
     </head>
-    <body class="hold-transition skin-blue sidebar-mini" ng-app="xCamundaAPP">
+    <body class="hold-transition skin-blue sidebar-mini" ng-app="xCamundaAPP" ng-controller="mainController">
         <!-- Site wrapper -->
         <div class="wrapper" >
 
@@ -76,16 +77,16 @@ folder instead of downloading all of them to reduce the load. -->
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="http://cocktailcompany.dk/wp-content/uploads/2015/03/user7.png" class="user-image" alt="User Image">
-                                    <span class="hidden-xs">{{$usuario.nombre}}</span>
+                                    <img src="http://cocktailcompany.dk/wp-content/uploads/2015/03/user7.png" class="user-image" alt="User Image"/>
+                                    <span class="hidden-xs">{{usuario.nombre}}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="http://cocktailcompany.dk/wp-content/uploads/2015/03/user7.png" class="img-circle" alt="User Image">
+                                        <img src="http://cocktailcompany.dk/wp-content/uploads/2015/03/user7.png" class="img-circle" alt="User Image"/>
 
                                         <p>
-                                            {{$usuario.nombre}}
+                                            {{usuario.nombre}}
                                         </p>
                                     </li>
 
@@ -113,19 +114,20 @@ folder instead of downloading all of them to reduce the load. -->
 
 
             <!-- Left side column. contains the sidebar -->
-            <aside class="main-sidebar" ng-controller="mainController" >
+            <aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="header">PROCESOS</li>        
-                        <li ng-repeat="proceso in procesos"><a><i class="fa fa-delicious"></i> <span>{{proceso.nombre}}</span></a></li>        
+                        <li ng-repeat="proceso in procesos"><a><i class="fa fa-delicious"></i> <span>{{proceso}}</span></a></li>
+     
                     </ul>
                 </section>
                 <!-- /.sidebar -->
             </aside>
 
-            <div ng-include="'pinstanscreate.html'" ng-controller="pinstanscreateController"></div>
+            
             <!-- =============================================== -->
 
             <!-- INSTANCIAS DE PROCESO -->
@@ -143,7 +145,7 @@ folder instead of downloading all of them to reduce the load. -->
                 <!-- Modal -->
                 <div ng-include="'pinstanslist.html'" ng-controller="pinstanslistController"></div>
 
-                
+                <div ng-include="'pinstanscreate.html'" ng-controller="pinstanscreateController"></div>
 
                 <!-- LISTA DE TAREAS -->
 

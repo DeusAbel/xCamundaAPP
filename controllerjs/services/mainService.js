@@ -1,8 +1,6 @@
-var app = angular.module('mainService', []);
-
-app.factory('mainRequest', function ($http) {
-	
-        var path = "http://localhost/xCamunda";        
+angular.module('xCamundaAPP')
+    .factory('mainService', function ($http) {
+        var path = "http://localhost:8080/sig/camunda/procesos/";
 
         var myHeaders = {
             'accept': 'application/json',
@@ -11,17 +9,12 @@ app.factory('mainRequest', function ($http) {
             'content-type': 'application/json',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
         }
+        
 
-        return {
-        	getUsuario: function(usuario_id){
-        		global = $http.get(path + "/usuarios/" + usuario_id);
-        		return global;
-        	},
-            
-            getProcesos: function (usuario_id) {
-                var config = myHeaders;
-                global = $http.post(path + "/procesos/"+ +usuario_id);
+        return {            
+            getProcesos: function(){
+                global = $http.get(path);
                 return global;
-            }
+            }            
         }
     });

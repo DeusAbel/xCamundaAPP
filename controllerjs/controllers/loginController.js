@@ -14,7 +14,7 @@ app.controller('loginController',function loginController($scope, loginService){
         //console.log($scope.usuario.nombre + "/"+ $scope.usuario.clave);
         //if ($scope.usuario.nombre=="abel" && $scope.usuario.clave=="1234"){
 		if (loginService.loginUser($scope.usuario)!=null){
-			console.log("Logeado con exito"+ loginService.usuario.nombreCompleto);
+			console.log("Logeado con exito");
 
 		}else{
 			console.log("Error en el logeado");
