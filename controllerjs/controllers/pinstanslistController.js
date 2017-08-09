@@ -1,27 +1,11 @@
 var app = angular.module('xCamundaAPP');
 app.controller('pinstanslistController', function ($scope){
-
-    
-
     $scope.proceso_actual="1";
     //$scope.pinstan = {};  
-    $scope.pinstanslist = [
-        {
-            "id" : "123456789",
-            "businessKey" : "Instancia Proceso 1.1",
-            "fecha" : "01/07/2017"
-        },        {
-            "id" : "123456789",
-            "businessKey" : "Instancia Proceso 1.2",
-            "fecha" : "02/07/2017"
-        },        {
-            "id" : "123456789",
-            "businessKey" : "Instancia Proceso 1.3",
-            "fecha" : "03/07/2017"
-        },        {
-            "id" : "123456789",
-            "businessKey" : "Instancia Proceso 1.4",
-            "fecha" : "04/07/2017"
-        },
-    ];
+    $scope.pinstanslist = [{
+        "date": 1502301398481,
+        "instanceid": "720a9b68-77ab-11e7-b2d9-4ee01023a3b9",
+        "businesskey": null,
+        "processdefinitionid": "invoice:2:b503c3ad-56a3-11e7-9747-4ee01023a3b9"
+    }]
 });

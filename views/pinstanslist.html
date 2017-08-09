@@ -18,7 +18,7 @@
             <tr>
               <th class="text-center" id="ID" type="text" prime="true" static="true">ID</th>
               <th class="text-center" id="NOMBRE PROCESO" type="text">BUSINEES KEY</th>
-              <th class="text-center" id="FECHA DE CREACION" type="text">FECHA DE CREACION</th>              
+              <th class="text-center" id="FECHA DE CREACION" type="text">ProcessDefinition</th>              
               <th>TAREAS</th>
               <th>ELIMINAR</th>
             </tr>
@@ -26,9 +26,9 @@
                 
           <tbody>
             <tr ng-repeat="instanproceso in pinstanslist">              
-              <td type="text">{{instanproceso.id}}</td>
-              <td type="text">{{instanproceso.businessKey}}</td>
-              <td type="text">{{instanproceso.fecha}}</td>              
+              <td type="text">{{instanproceso.instanceid}}</td>
+              <td type="text">{{instanproceso.businesskey}}</td>
+              <td type="text">{{instanproceso.processdefinitionid}}</td>              
               <td><button href="#main" class="btn btn-info">Tareas</button></td>
               <td><button class="btn btn-warning">Eliminar</button></td>              
             </tr>

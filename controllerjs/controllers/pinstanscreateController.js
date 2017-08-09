@@ -1,12 +1,9 @@
 var app = angular.module('xCamundaAPP');
 app.controller('pinstanscreateController', function ($scope,pinstanscreateService) {
 
-<<<<<<< HEAD
-=======
     console.log("instanscreateController");
     $scope.pinstanVariables = pinstanscreateService.pinstanVariables;
     $scope.tipoVariable = pinstanscreateService.tipoVariable;
->>>>>>> 1d694c528dec815c882a192b2c72a5334520d2dc
 
 //    $scope.pinstanVariables = [
 //        {
