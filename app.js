@@ -23,7 +23,19 @@
         templateUrl:'views/pinstanslist.html',
         controller: 'controllerjs/controllers/pinstanslistController',        
         controllerAs: 'pinstanslistController'       
-      })     
+      })
+      
+      .when('/pinstanscreate', {
+        templateUrl:'views/pinstanscreate.html',
+        controller: 'controllerjs/controllers/pinstanscreateController',        
+        controllerAs: 'pinstanscreateController'       
+      })
+      
+      .when('/tasklist', {
+        templateUrl:'views/tasklist.html',
+        controller: 'controllerjs/controllers/tasklistController',        
+        controllerAs: 'tasklistController'       
+      }) 
       .otherwise({
         redirectTo: '/'
       });

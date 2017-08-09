@@ -1,29 +1,31 @@
 var app = angular.module('xCamundaAPP');
-app.controller('pinstanslistController', function ($scope){
+app.controller('tasklistController', function ($scope) {
 
-    console.log("plist la ptmr");
+    console.log("tasklistController");
 
-    $scope.proceso_actual="1";
-    //$scope.pinstan = {};  
-    $scope.pinstanslist = [
+    $scope.tareasXInstancia = [
         {
-            "id" : "123456789",
-            "businessKey" : "Instancia Proceso 1.1",
-            "fecha" : "01/07/2017"
-        },        {
-            "id" : "123456789",
-            "businessKey" : "Instancia Proceso 1.2",
-            "fecha" : "02/07/2017"
-        },        {
-            "id" : "123456789",
-            "businessKey" : "Instancia Proceso 1.3",
-            "fecha" : "03/07/2017"
-        },        {
-            "id" : "123456789",
-            "businessKey" : "Instancia Proceso 1.4",
-            "fecha" : "04/07/2017"
-        },
+            "id": "0c5d9601-7861-11e7-b54b-002100a5c998",
+            "name": "usuario",
+            "description": null,
+            "priority": 50,
+            "duedate": null,
+            "createtime": 1501774387271,
+            "processname": "proceso:4:eb1ba39a-7860-11e7-b54b-002100a5c998",
+            "taskuniquename": "Task_0xn85j9",
+            "assignee": null,
+            "starttime": null,
+            "endtime": null
+        }
     ];
-
-
+    
+    $scope.AsignarTarea = function(dato){
+        var pos = $scope.pinstanVariables.indexOf(dato);
+        
+    };
+    
+    $scope.CompletarTarea = function(dato){
+        
+    };
+    
 });
