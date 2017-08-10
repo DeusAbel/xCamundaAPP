@@ -69,13 +69,7 @@ app.controller('mainController', function ($scope, mainService, loginService){
 		});*/
 		
 		$scope.proceso_actual = $scope.procesos[pos];
-		console.log(pos);
-		console.log($scope.proceso_actual);
-
-
-		$scope.$parent.$broadcast('msg', $scope.proceso_actual);
-		
-		console.log($scope.proceso_actual);
+		$scope.$parent.$broadcast('msg', $scope.proceso_actual);				
 	}
 	
 	$scope.getProcesos();

@@ -30,6 +30,8 @@ app.controller('pinstanslistController', function ($scope,pinstanslistService){
     $scope.$on('msg',function(evt, msg){
         $scope.proceso_actual = msg;
         $scope.getInstansProceso();
+        console.log("dato padre: " + $scope.$parent.proceso_actual);
     });
     //
+    
 });
