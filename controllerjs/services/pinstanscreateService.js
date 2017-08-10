@@ -1,22 +1,23 @@
 var app = angular.module('xCamundaAPP');
 
 app.service('pinstanscreateService', function($http){
-	var path = "http://localhost/instancias/";
+    
+	var path = "http://localhost:8080/sig/camunda"; 
 
-   this.pinstanVariables = [
-        {
-            "nombre": "Nombre",
-            "tipo": "String",
-            "valor": "Gary",
-            "modificar": true
-        },
-        {
-            "nombre": "monto",
-            "tipo": "int",
-            "valor": "1000",
-            "modificar": true
-        }
-    ];
+//   this.pinstanVariables = [
+//        {
+//            "nombre": "Nombre",
+//            "tipo": "String",
+//            "valor": "Gary",
+//            "modificar": true
+//        },
+//        {
+//            "nombre": "monto",
+//            "tipo": "int",
+//            "valor": "1000",
+//            "modificar": true
+//        }
+//    ];
 
     this.tipoVariable = [
         {
@@ -41,6 +42,11 @@ app.service('pinstanscreateService', function($http){
 			'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 	}
 		
-    
+     return {
+        	postIniciarProceso: function(dato){
+        		global = $http.post(path + "/procesos/iniciar/proceso",dato);
+        		return global;
+        	}
+        }
 
 });

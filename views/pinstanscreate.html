@@ -1,17 +1,11 @@
-<!--                Menu de prueba-->
 <aside class="sidebar-nav" ng-controller="pinstanscreateController">
     <!-- sidebar: style can be found in sidebar.less -->
-
     <section class="sidebar">
-
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <!--                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalProcessVariable">prueba</button>-->
-
             <!-- Modal -->
             <div id="IniciarProceso" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-lg">
-
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
@@ -30,9 +24,6 @@
                                     <button class="btn btn-info form-control" ng-click="AgregarVariable()" value="Agregar">Agregar Variable</button>
                                 </div>
                             </div>
-
-
-
                             <table style="width: 100%" class="table table-bordered table-striped" id='crud-table'>
                                 <thead>
                                     <tr>
@@ -43,7 +34,6 @@
                                         <th>Eliminar</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     <tr ng-repeat="pinstanVariable in pinstanVariables">
                                         <td> <input type="text" class="form-control" ng-model="pinstanVariable.nombre" ng-disabled="pinstanVariable.modificar"></td>
@@ -52,28 +42,19 @@
                                                     ng-selected="row.valor == pinstanVariable.tipo" >{{row.texto}}</option>
                                             </select></td>
                                         <td> <input type="text" class="form-control" ng-model="pinstanVariable.valor" ng-disabled="pinstanVariable.modificar"></td>
-                                        <!--                                        <td><button class="btn btn-info form-control" ng-click="ModificarVariable(pinstanVariable)" value="Modificar">{{btntextoGuardarVariable}}</button></td>-->
                                         <td><button class="btn btn-info form-control" ng-click="ModificarVariable(pinstanVariable)" value="Modificar">{{pinstanVariable.modificar && 'Modificar' || 'Guardar' }}</button></td>
-
                                         <td><button class="btn btn-Warning form-control" ng-click="EliminarVariable(pinstanVariable)" value="Eliminar">Eliminar</button></td>
-
                                     </tr>
                                 </tbody>
                             </table>
-
-
-
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Iniciar Proceso</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="IniciarProceso()">Iniciar Proceso</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </ul>
     </section>
-
 </aside>
-<!--                fin menu prueba-->

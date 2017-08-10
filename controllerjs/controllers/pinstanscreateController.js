@@ -2,45 +2,25 @@ var app = angular.module('xCamundaAPP');
 app.controller('pinstanscreateController', function ($scope,pinstanscreateService) {
 
     console.log("instanscreateController");
-    $scope.pinstanVariables = pinstanscreateService.pinstanVariables;
-    $scope.tipoVariable = pinstanscreateService.tipoVariable;
-
-//    $scope.pinstanVariables = [
-//        {
-//            "nombre": "Nombre",
-//            "tipo": "String",
-//            "valor": "Gary",
-//            "modificar": true
-//        },
-//        {
-//            "nombre": "monto",
-//            "tipo": "int",
-//            "valor": "1000",
-//            "modificar": true
-//        }
-//    ];
-//
-//    $scope.tipoVariable = [
-//        {
-//            "valor": "int",
-//            "texto": "Numero"
-//        },
-//        {
-//            "valor": "String",
-//            "texto": "Texto"
-//        },
-//        {
-//            "valor": "date",
-//            "texto": "Fecha"
-//        }
-//    ];
+    //$scope.pinstanVariables = pinstanscreateService.pinstanVariables;
+    $scope.pinstanVariables = [];
+    //$scope.tipoVariable = pinstanscreateService.tipoVariable;
+     $scope.tipoVariable = [
+        {
+            "valor": "int",
+            "texto": "Numero"
+        },
+        {
+            "valor": "String",
+            "texto": "Texto"
+        },
+        {
+            "valor": "date",
+            "texto": "Fecha"
+        }
+    ];
 
     $scope.ModificarVariable = function (dato) {
-        //        it('should toggle button', function() {
-        //            expect(element(by.css('button')).getAttribute('disabled')).toBeFalsy();
-        //            element(by.model('checked')).click();
-        //            expect(element(by.css('button')).getAttribute('disabled')).toBeTruthy();
-        //        });
         var pos = $scope.pinstanVariables.indexOf(dato);
         //console.log($scope.pinstanVariables[0].modificar);
         if ($scope.pinstanVariables[pos].modificar) {
@@ -61,14 +41,30 @@ app.controller('pinstanscreateController', function ($scope,pinstanscreateServic
             "nombre": "",
             "tipo": "",
             "valor": "",
-            "modificar": true
+            "modificar": false
         };
 
         $scope.pinstanVariables.push($scope.nuevaVariable)
     };
     
+    $scope.EnviarIniciarProceso={
+        "idproceso":"proceso",
+        "businessKey":"businessKey",
+        "description":"description",
+        "person":"gary",
+        "variables": $scope.pinstanVariables
+    };
+    
+    
     $scope.IniciarProceso = function () {
-      alert("proceso inciado");  
+        
+        console.log($scope.EnviarIniciarProceso);
+        
+      alert("proceso inciado");
+        
+        pinstanscreateService.postIniciarProceso($scope.EnviarIniciarProceso);
+        
+        $scope.pinstanVariables=[];
     };
 
 
