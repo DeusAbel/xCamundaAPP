@@ -29,8 +29,8 @@
               <td type="text">{{instanproceso.instanceid}}</td>
               <td type="text">{{instanproceso.businesskey}}</td>
               <td type="text">{{instanproceso.processdefinitionid}}</td>              
-              <td><button class="btn btn-info">Tareas</button></td>
-              <td><button class="btn btn-warning">Eliminar</button></td>              
+              <td><button class="btn btn-info" ng-click="CargarTareas(instanproceso)">Tareas</button></td>
+              <td><button class="btn btn-warning" ng-click="EliminarTarea(instanproceso)">Eliminar</button></td>              
             </tr>
           </tbody>
 
