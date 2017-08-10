@@ -48,7 +48,7 @@ app.controller('pinstanscreateController', function ($scope,pinstanscreateServic
     };
     
     $scope.EnviarIniciarProceso={
-        "idproceso":"proceso",
+        "idproceso":$scope.$parent.proceso_actual,
         "businessKey":"businessKey",
         "description":"description",
         "person":"gary",

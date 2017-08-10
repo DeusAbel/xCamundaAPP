@@ -2,7 +2,7 @@ var app = angular.module('xCamundaAPP');
 app.controller('pinstanslistController', function ($scope,pinstanslistService){
     //$scope.pinstan = {};  
     $scope.pinstanslist = ""; 
-    $scope.proceso_actual = "";
+    //$scope.proceso_actual = "";
     
     /*[{
         "date": 1502301398481,
@@ -15,7 +15,7 @@ app.controller('pinstanslistController', function ($scope,pinstanslistService){
 
     $scope.getInstansProceso  = function(){        
 
-        pinstanslistService.getInstansProceso($scope.proceso_actual).success(function(data){
+        pinstanslistService.getInstansProceso($scope.$parent.proceso_actual).success(function(data){
             $scope.pinstanslist = data;
         });
     }
@@ -28,9 +28,9 @@ app.controller('pinstanslistController', function ($scope,pinstanslistService){
         });
 
     $scope.$on('msg',function(evt, msg){
-        $scope.proceso_actual = msg;
+        //$scope.proceso_actual = msg;
         $scope.getInstansProceso();
-        console.log("dato padre: " + $scope.$parent.proceso_actual);
+        //console.log("dato padre: " + $scope.$parent.proceso_actual);
     });
     //
     

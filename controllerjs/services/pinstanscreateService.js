@@ -2,38 +2,7 @@ var app = angular.module('xCamundaAPP');
 
 app.service('pinstanscreateService', function($http){
     
-	var path = "http://localhost:8080/sig/camunda"; 
-
-//   this.pinstanVariables = [
-//        {
-//            "nombre": "Nombre",
-//            "tipo": "String",
-//            "valor": "Gary",
-//            "modificar": true
-//        },
-//        {
-//            "nombre": "monto",
-//            "tipo": "int",
-//            "valor": "1000",
-//            "modificar": true
-//        }
-//    ];
-
-    this.tipoVariable = [
-        {
-            "valor": "int",
-            "texto": "Numero"
-        },
-        {
-            "valor": "String",
-            "texto": "Texto"
-        },
-        {
-            "valor": "date",
-            "texto": "Fecha"
-        }
-    ];
-    
+	var path = "http://localhost:8080/sig/camunda";
 	var myHeaders = {
 			'accept': 'application/json',
 			'accept-encoding': 'gzip, deflate',
@@ -48,5 +17,4 @@ app.service('pinstanscreateService', function($http){
         		return global;
         	}
         }
-
 });
