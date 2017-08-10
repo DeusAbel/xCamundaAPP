@@ -2,6 +2,16 @@ var app = angular.module('xCamundaAPP',[]);
 
 app.controller('mainController', function ($scope, mainService, loginService){
 	var path = "http://localhost:8080/sig/camunda/procesos";
+	$scope.procesos = [];
+
+	$scope.instancia_Procesos_actual = "";
+	$scope.proceso_actual = "";
+
+	$scope.usuario = 
+		{
+            "id" : "123456789",
+            "nombre" : "Anonimo"
+		};
 
     /*
 	$scope.procesos = [
@@ -29,22 +39,13 @@ app.controller('mainController', function ($scope, mainService, loginService){
         }
     ];*/
 
-	$scope.procesos = [];
 
-	$scope.usuario = 
-		{
-            "id" : "123456789",
-            "nombre" : "Anonimo"
-		};
 	
-	$scope.getUser = function(){
-		
-		$scope.usuario.nombre = loginService.usuario.nombreCompleto;			
-		
+	$scope.getUser = function(){		
+		$scope.usuario.nombre = loginService.usuario.nombreCompleto;					
 	}
 
 	$scope.getProcesos = function(){
-
 		/*$http.get(path)
             .then(function (data) {
                 $scope.procesos = data.data;          
@@ -54,8 +55,21 @@ app.controller('mainController', function ($scope, mainService, loginService){
 		});*/
 		mainService.getProcesos().success(function(data){
             $scope.procesos = data;            
-        });
+        });		
+	}
+
+	$scope.listarInstancias = function(pos){
+
+		/*$http.get(path)
+            .then(function (data) {
+                $scope.procesos = data.data;          
+                console.log($scope.procesos);
+            }, function(data) {          
+                console.log("error: " + data);
+		});*/
 		
+		$scope.proceso_actual = $scope.procesos[pos];
+		$scope.$parent.$broadcast('msg', $scope.proceso_actual);				
 	}
 	
 	$scope.getProcesos();
