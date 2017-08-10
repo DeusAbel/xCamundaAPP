@@ -48,8 +48,9 @@ app.controller('pinstanscreateController', function ($scope, pinstanscreateServi
         $scope.pinstanVariables.push($scope.nuevaVariable)
     };
 
+
     $scope.EnviarIniciarProceso = {
-        //"idproceso":$scope.$parent.proceso_actual,
+        //"idproceso": $scope.$parent.proceso_actual,
         "idproceso": "proceso",
         "businessKey": "",
         "description": "",
@@ -74,11 +75,13 @@ app.controller('pinstanscreateController', function ($scope, pinstanscreateServi
             $scope.enviarVariables.push(nVariable)
         }
 
-        console.log($scope.EnviarIniciarProceso);
+        
 
         alert("proceso inciado");
-
+        $scope.EnviarIniciarProceso.idproceso = $scope.$parent.proceso_actual;
+        console.log($scope.EnviarIniciarProceso);
         pinstanscreateService.postIniciarProceso($scope.EnviarIniciarProceso);
+        console.log($scope.EnviarIniciarProceso);
 
         $scope.pinstanVariables = [];
         $scope.enviarVariables = [];

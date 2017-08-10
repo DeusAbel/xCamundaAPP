@@ -22,16 +22,13 @@ app.controller('pinstanslistController', function ($scope,pinstanslistService){
 
 
     var vm = this;
-    vm.data = 'Nothing here...';
-        $scope.$on('msg', function(evt, msg){
-            vm.data = msg;
-        });
 
-    $scope.$on('msg',function(evt, msg){
-        //$scope.proceso_actual = msg;
+
+    $scope.$on('actualizar_instancias',function(evt, msg){
+        
         $scope.getInstansProceso();
-        //console.log("dato padre: " + $scope.$parent.proceso_actual);
+        
     });
-    //
+    
     
 });
