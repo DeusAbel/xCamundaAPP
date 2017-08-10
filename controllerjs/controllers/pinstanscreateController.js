@@ -1,13 +1,14 @@
 var app = angular.module('xCamundaAPP');
-app.controller('pinstanscreateController', function ($scope,pinstanscreateService) {
+app.controller('pinstanscreateController', function ($scope, pinstanscreateService) {
 
     console.log("instanscreateController");
     //$scope.pinstanVariables = pinstanscreateService.pinstanVariables;
     $scope.pinstanVariables = [];
+    $scope.enviarVariables = [];
     //$scope.tipoVariable = pinstanscreateService.tipoVariable;
-     $scope.tipoVariable = [
+    $scope.tipoVariable = [
         {
-            "valor": "int",
+            "valor": "Integer",
             "texto": "Numero"
         },
         {
@@ -15,7 +16,7 @@ app.controller('pinstanscreateController', function ($scope,pinstanscreateServic
             "texto": "Texto"
         },
         {
-            "valor": "date",
+            "valor": "Date",
             "texto": "Fecha"
         }
     ];
@@ -32,7 +33,7 @@ app.controller('pinstanscreateController', function ($scope,pinstanscreateServic
 
     $scope.EliminarVariable = function (dato) {
         var pos = $scope.pinstanVariables.indexOf(dato);
-        $scope.pinstanVariables.splice(pos,1);
+        $scope.pinstanVariables.splice(pos, 1);
     };
 
     $scope.AgregarVariable = function () {
@@ -46,25 +47,48 @@ app.controller('pinstanscreateController', function ($scope,pinstanscreateServic
 
         $scope.pinstanVariables.push($scope.nuevaVariable)
     };
-    
-    $scope.EnviarIniciarProceso={
-        "idproceso":$scope.$parent.proceso_actual,
-        "businessKey":"businessKey",
-        "description":"description",
-        "person":"gary",
-        "variables": $scope.pinstanVariables
+
+    $scope.EnviarIniciarProceso = {
+        //"idproceso":$scope.$parent.proceso_actual,
+        "idproceso": "proceso",
+        "businessKey": "",
+        "description": "",
+        "person": "gary",
+        "variables": $scope.enviarVariables
     };
-    
-    
+
+
     $scope.IniciarProceso = function () {
-        
+
+        var nVariable = {
+            "nombre": "",
+            "tipo": "",
+            "valor": ""
+        }
+
+        for (var variable in $scope.pinstanVariables) {
+            //var nVariable = {};
+            nVariable.nombre = $scope.pinstanVariables[variable].nombre;
+            nVariable.tipo = $scope.pinstanVariables[variable].tipo;
+            nVariable.valor = $scope.pinstanVariables[variable].valor;
+            $scope.enviarVariables.push(nVariable)
+        }
+
         console.log($scope.EnviarIniciarProceso);
-        
-      alert("proceso inciado");
-        
+
+        alert("proceso inciado");
+
         pinstanscreateService.postIniciarProceso($scope.EnviarIniciarProceso);
-        
-        $scope.pinstanVariables=[];
+
+        $scope.pinstanVariables = [];
+        $scope.enviarVariables = [];
+        $scope.EnviarIniciarProceso = {
+            "idproceso": "proceso",
+            "businessKey": "",
+            "description": "",
+            "person": "gary",
+            "variables": $scope.enviarVariables
+        };
     };
 
 

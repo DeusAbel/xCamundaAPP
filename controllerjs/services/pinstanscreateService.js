@@ -13,7 +13,7 @@ app.service('pinstanscreateService', function($http){
 		
      return {
         	postIniciarProceso: function(dato){
-        		global = $http.post(path + "/procesos/iniciar/proceso",dato);
+        		global = $http.post(path + "/procesos/iniciar",dato);
         		return global;
         	}
         }

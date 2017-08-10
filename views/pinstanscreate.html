@@ -14,13 +14,19 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-lg-1">
                                     <label>Bussiness Key</label>
                                 </div>
-                                <div class="col-md-3">
-                                    <input name="key" type="text" class="form-control">
+                                <div class="col-lg-2">
+                                    <input name="key" type="text" class="form-control" ng-model="EnviarIniciarProceso.businessKey">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-lg-1">
+                                    <label>Descripción</label>
+                                </div>
+                                <div class="col-lg-2">
+                                    <input name="descripcion" type="text" class="form-control" ng-model="EnviarIniciarProceso.description">
+                                </div>
+                                <div class="col-lg-3">
                                     <button class="btn btn-info form-control" ng-click="AgregarVariable()" value="Agregar">Agregar Variable</button>
                                 </div>
                             </div>
@@ -37,7 +43,7 @@
                                 <tbody>
                                     <tr ng-repeat="pinstanVariable in pinstanVariables">
                                         <td> <input type="text" class="form-control" ng-model="pinstanVariable.nombre" ng-disabled="pinstanVariable.modificar"></td>
-                                        <td> <select class="form-control" ng-disabled="pinstanVariable.modificar">
+                                        <td> <select class="form-control" ng-disabled="pinstanVariable.modificar" ng-model="pinstanVariable.tipo">
                                             <option  ng-repeat="row in tipoVariable" value="{{row.valor}}" 
                                                     ng-selected="row.valor == pinstanVariable.tipo" >{{row.texto}}</option>
                                             </select></td>
