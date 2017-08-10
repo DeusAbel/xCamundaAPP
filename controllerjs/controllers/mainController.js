@@ -6,11 +6,9 @@ app.controller('mainController', function ($scope, mainService, loginService){
 	$scope.instancia_Proceso_actual = "";
 	$scope.proceso_actual = "";
 
-	$scope.usuario = {
-			"id" : "0",
-	        "nombre" : "demo",
-			"clave" : "anonimo",
-			"nombreCompleto" : "usuario anonimo"
+	$scope.usuario = {			
+    	"usuario" : "demo",
+		"password" : "anonimo",
 	};
 
 	$scope.getUser = function(){		
@@ -28,10 +26,6 @@ app.controller('mainController', function ($scope, mainService, loginService){
 		$scope.$parent.$broadcast('actualizar_instancias', $scope.proceso_actual);				
 		
 	}
-
-	
-
 	
 	$scope.getProcesos();
-
 });
