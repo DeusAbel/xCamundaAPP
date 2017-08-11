@@ -5,11 +5,18 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 
     $scope.tareasXInstancia = [];
     
-    $scope.pinstanVariables = [];
+    $scope.pinstanVariables = [
+//        {
+//            "nombre": "",
+//            "tipo":"",
+//            "valor":"",
+//            "modificar": false
+//        }
+    ];
 
     $scope.tipoVariable = [
         {
-            "valor": "int",
+            "valor": "Integer",
             "texto": "Numero"
         },
         {
@@ -17,7 +24,7 @@ app.controller('tasklistController', function ($scope, tasklistService) {
             "texto": "Texto"
         },
         {
-            "valor": "date",
+            "valor": "Date",
             "texto": "Fecha"
         }
     ];
@@ -44,14 +51,14 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 
     $scope.AgregarVariable = function () {
 
-        $scope.nuevaVariable = {
+         var nuevaVariable = {
             "nombre": "",
             "tipo": "",
             "valor": "",
             "modificar": false
         };
 
-        $scope.pinstanVariables.push($scope.nuevaVariable)
+        $scope.pinstanVariables.push(nuevaVariable)
     };
 
     $scope.ListarTareas = function (instanciaId) {
@@ -63,13 +70,23 @@ app.controller('tasklistController', function ($scope, tasklistService) {
     
     $scope.CargarVariablesInstancia = function (instanciaId){
         tasklistService.getVariablesXInstancia(instanciaId).success(function(data){
-           $scope.pinstanVariables = data;
+           var instanciasVariables = [];
+           instanciasVariables = data;
+            for (var variable in instanciasVariables){
+                var variables = [];
+                variables.nombre = variable ;
+                variables.tipo = "String";
+                variables.valor = instanciasVariables[variable];
+                variables.modificar = false;
+                $scope.pinstanVariables.push(variables);
+            }
         });
     };
 
     $scope.$on('instanciaId', function (evt, msg) {
         console.log(msg);
         $scope.ListarTareas(msg);
+        $scope.pinstanVariables = [];
         $scope.CargarVariablesInstancia(msg);
     });
 
