@@ -8,7 +8,13 @@ app.service('tasklistService', function($http){
         	getTareas: function(instanciaId){
         		global = $http.get(path + "/" + instanciaId);
         		return global;
+        	},
+         {
+        	getTareas: function(instanciaId){
+        		global = $http.get(path + "/" + instanciaId);
+        		return global;
         	}
+         
         }
 
 });

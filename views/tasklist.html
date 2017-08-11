@@ -1,4 +1,4 @@
-<aside class="sidebar-nav" ng-controller="tasklistController">
+<aside class="sidebar-nav">
     <!-- sidebar: style can be found in sidebar.less -->
 
     <section class="sidebar">
@@ -26,8 +26,8 @@
                         <td type="text" class="text-center">{{tarea.priority}}</td>
                         <td>
 <!--                            <button class="btn btn-warning text-center" ng-click="CompletarTarea(tarea)">Completar</button>-->
-                        <button class="btn btn-info" type="button" data-target="#CompletarProceso" 
-                                data-toggle="modal" ng-click="CompletarTarea(tarea)">Completar Proceso</button>
+                        <button class="btn btn-info" type="button" data-target="#CompletarTarea" 
+                                data-toggle="modal" ng-click="CompletarTarea(tarea)">Completar Tarea</button>
                         </td>
                     </tr>
                 </tbody>
@@ -42,13 +42,13 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <!-- Modal -->
-            <div id="CompletarProceso" class="modal fade" role="dialog">
+            <div id="CompletarTarea" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Completar proceso</h4>
+                            <h4 class="modal-title">Completar Tarea</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
