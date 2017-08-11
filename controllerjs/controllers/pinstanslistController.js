@@ -26,7 +26,11 @@ app.controller('pinstanslistController', function ($scope, pinstanslistService) 
         //console.log($scope.pinstanslist);
         //console.log($scope.pinstanslist[pos].instanceid);
         $scope.pinstanciaId = $scope.pinstanslist[pos].instanceid;
+<<<<<<< HEAD
         $scope.$parent.$parent.$broadcast('instanciaId', $scope.pinstanciaId);
+=======
+        $scope.$parent.$parent.$parent.$broadcast('instanciaId', $scope.pinstanciaId);
+>>>>>>> 33022bd14a7e0e0ecc0549d65423d0d3ed08a0e9
         console.log($scope.pinstanciaId);
     }
 
