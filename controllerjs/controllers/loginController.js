@@ -12,22 +12,22 @@ app.controller('loginController',function loginController($scope, loginService){
 		loginService.loginUser($scope.usuario).success(function(data){
 			
 			if (data.success){
-				
+				console.log("user 1 : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
 				$scope.$parent.usuario = $scope.usuario;
 				console.log("user 1 : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
 				setTimeout(function()
 				{
 					$scope.$parent.$parent.$parent.$broadcast('actualizar_procesos', $scope.usuario); 
 					console.log("user 2 : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
-				}, 50); 				
+				}, 200); 				
 			}			
 		});
 		 
-				setTimeout(function()
-				{
-					
-					console.log("user delay : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
-				}, 50);
+		setTimeout(function()
+		{
+			
+			console.log("user delay : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
+		}, 200);
 
 		/*if ($scope.usuario!=null){
 			

@@ -13,8 +13,8 @@ app.controller('mainController', function ($scope, mainService, loginService){
 
 	$scope.getProcesos = function(){
 		console.log("user 3 : " + $scope.usuario.usuario + "/"+ $scope.usuario.password);
-		mainService.getProcesosUsuario($scope.usuario.usuario).success(function(data){
-        	$scope.procesos = data;            
+		mainService.getProcesosUsuario($scope.usuario.usuario).success(function(data){			
+        	$scope.procesos = $scope.ValidarDatosSrv(data);            
         });		
 	}
 
@@ -29,6 +29,17 @@ app.controller('mainController', function ($scope, mainService, loginService){
 		{			
 			$scope.usuario = msg;
 			$scope.getProcesos();
-		}, 50); 		
+		}, 200); 		
 	});
+
+	$scope.ValidarDatosSrv = function(data){
+		if(data.success){
+			return (data.data)
+		}
+		else{
+			alert(data.mensaje);
+			return [];
+		}
+	};
 });
+

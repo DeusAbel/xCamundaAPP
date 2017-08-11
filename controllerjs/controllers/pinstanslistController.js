@@ -25,8 +25,8 @@ app.controller('pinstanslistController', function ($scope, pinstanslistService) 
         var pos = $scope.pinstanslist.indexOf(dato);
         //console.log($scope.pinstanslist);
         //console.log($scope.pinstanslist[pos].instanceid);
-         $scope.pinstanciaId = $scope.pinstanslist[pos].instanceid;
-        $scope.$parent.$parent.$parent.$broadcast('instanciaId', $scope.pinstanciaId);
+        $scope.pinstanciaId = $scope.pinstanslist[pos].instanceid;
+        $scope.$parent.$parent.$broadcast('instanciaId', $scope.pinstanciaId);
         console.log($scope.pinstanciaId);
     }
 
