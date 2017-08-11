@@ -7,16 +7,16 @@ app.controller('mainController', function ($scope, mainService, loginService){
 	$scope.proceso_actual = "";
 
 	$scope.usuario = {			
-    	"usuario" : "demo",
-		"password" : "anonimo",
+    	"usuario" : "hector",
+		"password" : "1234",
 	};
-
+/*
 	$scope.getUser = function(){		
-		$scope.usuario.nombre = loginService.usuario.nombreCompleto;					
+		$scope.usuario.usuario = loginService.usuario.usuario;					
 	}
-
+*/
 	$scope.getProcesos = function(){
-		mainService.getProcesosUsuario($scope.usuario.nombre).success(function(data){
+		mainService.getProcesosUsuario($scope.usuario.usuario).success(function(data){
         	$scope.procesos = data;            
         });		
 	}
@@ -28,12 +28,6 @@ app.controller('mainController', function ($scope, mainService, loginService){
         //$scope.$parent.$broadcast('instanciaId', "0198e61d-7df0-11e7-9419-002100a5c998");
 		
 	}
-<<<<<<< HEAD
-=======
-
-	
-    
->>>>>>> ec8fb337404961db5a28c2d88752dd8a81b84226
 	
 	$scope.getProcesos();
 });
