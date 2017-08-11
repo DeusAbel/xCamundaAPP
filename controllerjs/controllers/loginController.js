@@ -11,7 +11,7 @@ app.controller('loginController',function loginController($scope, loginService){
 			
 		loginService.loginUser($scope.usuario).success(function(data){
 			
-			if (data.success  == "true"){
+			if (data.success){
 				
 				$scope.$parent.usuario = $scope.usuario;
 				console.log("user 1 : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
