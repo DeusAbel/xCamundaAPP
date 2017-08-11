@@ -7,8 +7,8 @@ app.controller('mainController', function ($scope, mainService, loginService){
 	$scope.proceso_actual = "";
 
 	$scope.usuario = {			
-    	"usuario" : "hector",
-		"password" : "1234",
+    	"usuario" : "anonimo",
+		"password" : "anonimo",
 	};
 /*
 	$scope.getUser = function(){		
@@ -16,6 +16,7 @@ app.controller('mainController', function ($scope, mainService, loginService){
 	}
 */
 	$scope.getProcesos = function(){
+		console.log("user 3 : " + $scope.usuario.usuario + "/"+ $scope.usuario.password);
 		mainService.getProcesosUsuario($scope.usuario.usuario).success(function(data){
         	$scope.procesos = data;            
         });		
@@ -29,5 +30,15 @@ app.controller('mainController', function ($scope, mainService, loginService){
 		
 	}
 	
-	$scope.getProcesos();
+	//$scope.getProcesos();
+	$scope.$on('actualizar_procesos', function (evt, msg) {
+		setTimeout(function()
+		{			
+			$scope.usuario = msg;
+			$scope.getProcesos();
+		}, 2000); 		
+	});
+
+
+
 });
