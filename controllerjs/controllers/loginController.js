@@ -11,7 +11,7 @@ app.controller('loginController',function loginController($scope, loginService){
 			
 		loginService.loginUser($scope.usuario).success(function(data){
 			
-			if (data.success  == "true"){
+			if (data.success){
 				
 				$scope.$parent.usuario = $scope.usuario;
 				console.log("user 1 : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
@@ -19,7 +19,7 @@ app.controller('loginController',function loginController($scope, loginService){
 				{
 					$scope.$parent.$parent.$parent.$broadcast('actualizar_procesos', $scope.usuario); 
 					console.log("user 2 : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
-				}, 1000); 				
+				}, 50); 				
 			}			
 		});
 		 
@@ -27,7 +27,7 @@ app.controller('loginController',function loginController($scope, loginService){
 				{
 					
 					console.log("user delay : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
-				}, 1000);
+				}, 50);
 
 		/*if ($scope.usuario!=null){
 			
