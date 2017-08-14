@@ -46,6 +46,9 @@ folder instead of downloading all of them to reduce the load. -->
 
     <script src="../controllerjs/services/tasklistService.js"></script>
     <script src="../controllerjs/controllers/tasklistController.js"></script>
+
+    
+    <script src="../controllerjs/controllers/taskeventlistController.js"></script>
     
 
 
@@ -140,8 +143,6 @@ folder instead of downloading all of them to reduce the load. -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <!-- Left side column. contains the sidebar -->
-
-
             <section class="sidebar">
                 <ul class="sidebar-menu">
                     <li class="header">INSTANCIAS DE PROCESO<span class="pull-right">
@@ -150,35 +151,19 @@ folder instead of downloading all of them to reduce the load. -->
                 </ul>
             </section>
             <!-- Modal -->
-            <div ng-include="'pinstanslist.html'" ng-controller="pinstanslistController"></div>
-
+            <div ng-include="'pinstanslist.html'" ng-controller="pinstanslistController"></div>            
             <div ng-include="'tasklist.html'" ng-controller="tasklistController"></div>
+            <div ng-include="'taskeventlist.html'" ng-controller="taskeventlistController"></div>
         </div>
 
-        <!--            TAsk List-->
-
+        <!-- Task List-->
         <!-- /.content-wrapper -->
 
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 1.1.1
-            </div>
-            <strong>Copyright &copy; 2017 <a href="#">SIG</a>.</strong> Derechos Reservados.
-        </footer>
-
-
+        
 
     </div>
 
-
-
-
-
     <!-- ./wrapper -->
-
-
-
-
 
 </body>
 
