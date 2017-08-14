@@ -1,0 +1,98 @@
+<aside class="sidebar-nav">
+    <!-- sidebar: style can be found in sidebar.less -->
+
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+
+        <ul class="sidebar-menu">
+            <li class="header">LISTA DE TAREAS</li>
+        </ul>
+
+        <ul class="sidebar-menu" style="height: 200px; overflow: auto;">
+
+            <table class="table table-bordered table-striped" id='crud-table'>
+                <thead>
+                    <tr>
+                        <th class="text-center" id="NOMBRE PROCESO" type="text">Nombre tarea</th>
+                        <th class="text-center" id="FECHA DE CREACION" type="text">Fecha de creación</th>
+                        <th class="text-center" id="FECHA DE CREACION" type="text">Prioridad</th>
+                        <th>Completar</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="tarea in tareasXInstancia">
+                        <td type="text" class="text-center">{{tarea.name}}</td>
+                        <td type="text" class="text-center">{{tarea.createtime}}</td>
+                        <td type="text" class="text-center">{{tarea.priority}}</td>
+                        <td>
+<!--                            <button class="btn btn-warning text-center" ng-click="CompletarTarea(tarea)">Completar</button>-->
+                        <button class="btn btn-info" type="button" data-target="#CompletarTarea" 
+                                data-toggle="modal" ng-click="CompletarTarea(tarea)">Completar Tarea</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ul>
+    </section>
+</aside>
+<!--Modal para completar tarea-->
+<aside class="sidebar-nav">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <!-- Modal -->
+            <div id="CompletarTarea" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Completar Tarea</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <label>Bussiness Key</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input name="key" type="text" class="form-control" readonly="true">
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-info form-control" ng-click="AgregarVariable()" value="Agregar">Agregar Variable</button>
+                                </div>
+                            </div>
+                            <table style="width: 100%" class="table table-bordered table-striped" id='crud-table'>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" id="NOMBRE PROCESO" type="text">Nombre Variable</th>
+                                        <th class="text-center" id="FECHA DE CREACION" type="text">Tipo de Variable</th>
+                                        <th class="text-center" id="FECHA DE CREACION" type="text">Valor de Variable</th>
+                                        <th>Modificar</th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="pinstanVariable in pinstanVariables">
+                                        <td> <input type="text" class="form-control" ng-model="pinstanVariable.nombre" ng-disabled="pinstanVariable.modificar"></td>
+                                        <td> <select class="form-control" ng-disabled="pinstanVariable.modificar">
+                                            <option  ng-repeat="row in tipoVariable" value="{{row.valor}}" 
+                                                    ng-selected="row.valor == pinstanVariable.tipo" >{{row.texto}}</option>
+                                            </select></td>
+                                        <td> <input type="text" class="form-control" ng-model="pinstanVariable.valor" ng-disabled="false"></td>
+                                        <td><button class="btn btn-info form-control" ng-click="ModificarVariable(pinstanVariable)" value="Modificar">{{pinstanVariable.modificar && 'Modificar' || 'Guardar' }}</button></td>
+                                        <td><button class="btn btn-Warning form-control" ng-click="EliminarVariable(pinstanVariable)" value="Eliminar">Eliminar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Completar Proceso</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </section>
+</aside>
