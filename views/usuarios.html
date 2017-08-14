@@ -1,0 +1,53 @@
+
+            <!-- Modal -->
+            <div id="usuarios" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Permisos de Proceso</h4>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    
+                                    <button class="btn btn-info form-control" data-toggle="modal" data-target="#usuarioForm">Agregar Usuario</button>
+                                </div>
+                            </div>
+                            <table style="width: 100%" class="table table-bordered table-striped" id='crud-table'>
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" id="USUARIO" type="text">USUARIO</th>
+                                        <th class="text-center" id="PROCESOS" type="text">PROCESOS</th>                                        
+                                        <th>MODIFICAR</th>
+                                        <th>ELIMINAR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="usuario in usuarios">
+                                        <td> <input type="text" class="form-control" ng-model="usuario" disabled="true" /></td>  
+                                                                            
+                                        <td> <select class="form-control" ng-disabled="pinstanVariable.modificar" ng-model="pinstanVariable.tipo">
+                                            <button class="btn btn-info" type="button" data-target="#AgregarProceso" data-toggle="modal"> + </button>
+                                            <option  ng-repeat="proceso in procesos" value="{{proceso}}" 
+                                                    ng-selected="row.valor == pinstanVariable.tipo" >{{row.texto}}</option>
+                                            </select>
+                                            
+                                        </td>
+                                        
+                                        <td><button class="btn btn-info form-control" ng-click="ModificarUsuario(usuario.id)" value="Modificar">{{usuario.modificar && 'Modificar' || 'Guardar' }}</button></td>
+                                        <td><button class="btn btn-Warning form-control" ng-click="EliminarUsuario(usuario.id)" value="Eliminar">Eliminar</button></td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">  
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                        <div ng-include="'usuario.html'"></div>
+                    </div>
+                </div>
+            </div>

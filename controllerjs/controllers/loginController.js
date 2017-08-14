@@ -18,6 +18,12 @@ app.controller('loginController',function loginController($scope, loginService){
 				setTimeout(function()
 				{
 					$scope.$parent.$parent.$parent.$broadcast('actualizar_procesos', $scope.usuario); 
+					if($scope.$parent.$parent.usuario.usuario == "demo")
+						{
+							$scope.$parent.$parent.admin = true;
+						}else{
+							$scope.$parent.$parent.admin = false;
+						}
 					console.log("user 2 : " + $scope.$parent.usuario.usuario + "/"+ $scope.$parent.usuario.password);
 				}, 200); 				
 			}			

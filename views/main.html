@@ -49,6 +49,7 @@ folder instead of downloading all of them to reduce the load. -->
 
     
     <script src="../controllerjs/controllers/taskeventlistController.js"></script>
+    <script src="../controllerjs/controllers/usuariosController.js"></script>
     
 
 
@@ -137,6 +138,7 @@ folder instead of downloading all of them to reduce the load. -->
         
 <!--        Modal para crear instancias de proceso-->
         <div ng-include="'pinstanscreate.html'" ng-controller="pinstanscreateController"></div>
+        <div ng-include="'usuarios.html'" ng-controller="usuariosController" ></div>
         <!-- =============================================== -->
 
         <!-- INSTANCIAS DE PROCESO -->
@@ -146,7 +148,8 @@ folder instead of downloading all of them to reduce the load. -->
             <section class="sidebar">
                 <ul class="sidebar-menu">
                     <li class="header">INSTANCIAS DE PROCESO<span class="pull-right">
-                            <button class="btn btn-info" type="button" data-target="#IniciarProceso" data-toggle="modal">Iniciar Proceso</button></span>
+                            <button class="btn btn-info" type="button" data-target="#IniciarProceso" data-toggle="modal">Iniciar Proceso</button>
+                            <button class="btn btn-info" type="button" data-target="#usuarios" data-toggle="modal">Usuarios</button></span>
                     </li>
                 </ul>
             </section>

@@ -9,8 +9,7 @@
         </li>
       </ul>
 -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      
+      <!-- sidebar menu: : style can be found in sidebar.less -->      
       <ul class="sidebar-menu" style="height: 200px; overflow: auto;">    
         
         <table class="table table-bordered table-striped" id='crud-table'>
@@ -31,7 +30,7 @@
               <td type="text">{{instanproceso.processdefinitionid}}</td>              
               <td><button class="btn btn-info" ng-click="CargarTareas(instanproceso)">Tareas</button></td>
               <td><button class="btn btn-warning" ng-click="EliminarTarea(instanproceso)">Eliminar</button></td>
-              
+              <td><button class="btn btn-warning" ng-show="admin" ng-click="PermisosInstans(instanproceso)">Permisos</button></td>
             </tr>
           </tbody>
 

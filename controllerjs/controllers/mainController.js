@@ -2,9 +2,11 @@ var app = angular.module('xCamundaAPP',[]);
 
 app.controller('mainController', function ($scope, mainService, loginService){
 	$scope.procesos = [];
+	$scope.admin = false;
 
 	$scope.instancia_Proceso_actual = "";
 	$scope.proceso_actual = "";
+
 
 	$scope.usuario = {			
     	"usuario" : "anonimo",
@@ -14,7 +16,7 @@ app.controller('mainController', function ($scope, mainService, loginService){
 	$scope.getProcesos = function(){
 		console.log("user 3 : " + $scope.usuario.usuario + "/"+ $scope.usuario.password);
 		mainService.getProcesosUsuario($scope.usuario.usuario).success(function(data){			
-        	$scope.procesos = $scope.ValidarDatosSrv(data);            
+			$scope.procesos = $scope.ValidarDatosSrv(data);            			
         });		
 	}
 
@@ -34,7 +36,7 @@ app.controller('mainController', function ($scope, mainService, loginService){
 
 	$scope.ValidarDatosSrv = function(data){
 		if(data.success){
-			return (data.data)
+			return (data.data)			
 		}
 		else{
 			alert(data.mensaje);
