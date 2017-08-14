@@ -5,6 +5,13 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 
     $scope.tareasXInstancia = [];
 
+    $scope.CompletarVariables = [];
+
+    $scope.completarTareaDatos = {
+        "bpmtaskid": "",
+        "variables": []
+    }
+
     $scope.pinstanVariables = [
 //        {
 //            "nombre": "",
@@ -30,10 +37,36 @@ app.controller('tasklistController', function ($scope, tasklistService) {
             "texto": "Fecha"
         }
     ];
+    $scope.taskId = "";
 
-    $scope.CompletarTarea = function (dato) {
-        console.log($scope.pinstanVariables);
+    $scope.ModalCompletarTarea = function (dato) {
+        var pos = $scope.tareasXInstancia.indexOf(dato);
+        $scope.taskId = $scope.tareasXInstancia[pos].id;
+    };
 
+    $scope.CompletarTarea = function () {
+        //console.log($scope.pinstanVariables);
+        $scope.CompletarVariables = [];
+        for (var variable in $scope.pinstanVariables) {
+            var nvariable = [];
+            nvariable.nombre = $scope.pinstanVariables[variable].nombre;
+            nvariable.valor = $scope.pinstanVariables[variable].valor;
+            //console.log(nvariable);
+            $scope.CompletarVariables.push(nvariable);
+        }
+        
+        $scope.completarTareaDatos.bpmtaskid = $scope.taskId;
+        $scope.completarTareaDatos.variables = $scope.CompletarVariables;
+        //console.log($scope.CompletarVariables);
+        console.log($scope.completarTareaDatos);
+
+        tasklistService.putCompletarTarea2($scope.completarTareaDatos).success(function (data) {
+            if (data.success) {
+                alert("Se completo la tarea");
+            } else {
+                alert("no se completo la tarea");
+            }
+        });
     };
 
     $scope.ModificarVariable = function (dato) {
@@ -96,7 +129,7 @@ app.controller('tasklistController', function ($scope, tasklistService) {
     $scope.$on('instanciaId', function (evt, msg) {
         $scope.pinstanciasId = msg.pinstanciaId;
         $scope.pbusineesKey = msg.pbusineesKey;
-        
+
         console.log($scope.pinstanciasId);
         $scope.ListarTareas($scope.pinstanciasId);
         $scope.pinstanVariables = [];
