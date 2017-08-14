@@ -1,96 +1,46 @@
 var app = angular.module('xCamundaAPP');
-app.controller('taskeventlistController', function ($scope, tasklistService) {
+app.controller('taskeventlistController', function ($scope, taskeventlistService) {
 
     console.log("taskeventlistController");
 
-    $scope.tareasXInstancia = [];
-    
-    $scope.pinstanVariables = [
-//        {
-//            "nombre": "",
-//            "tipo":"",
-//            "valor":"",
-//            "modificar": false
-//        }
-    ];
+    $scope.eventosXInstancia = [];
 
-    $scope.tipoVariable = [
-        {
-            "valor": "Integer",
-            "texto": "Numero"
-        },
-        {
-            "valor": "String",
-            "texto": "Texto"
-        },
-        {
-            "valor": "Date",
-            "texto": "Fecha"
-        }
-    ];
+    $scope.completarEventoDatos = {
+        "eventName": "",
+        "executionId": "",
+    };
 
-    $scope.CompletarTarea = function (dato) {
-        var pos = $scope.tareasXInstancia.indexOf(dato);
+    $scope.CompletarEvento = function (dato) {
+        var pos  = $scope.eventosXInstancia.indexOf(dato);
         
-
-    };
-
-    $scope.ModificarVariable = function (dato) {
-        var pos = $scope.pinstanVariables.indexOf(dato);
-        if ($scope.pinstanVariables[pos].modificar) {
-            $scope.pinstanVariables[pos].modificar = false;
-        } else {
-            $scope.pinstanVariables[pos].modificar = true;
-        }
-    };
-
-    $scope.EliminarVariable = function (dato) {
-        var pos = $scope.pinstanVariables.indexOf(dato);
-        $scope.pinstanVariables.splice(pos, 1);
-    };
-
-    $scope.AgregarVariable = function () {
-
-         var nuevaVariable = {
-            "nombre": "",
-            "tipo": "",
-            "valor": "",
-            "modificar": false
-        };
-
-        $scope.pinstanVariables.push(nuevaVariable)
-    };
-
-    $scope.ListarTareas = function (instanciaId) {
-        tasklistService.getTareas(instanciaId).success(function (data) {
-            $scope.tareasXInstancia = data;
-            //console.log($scope.tareasXInstancia);
-        });
-    };
-    
-    $scope.CargarVariablesInstancia = function (instanciaId){
-        tasklistService.getVariablesXInstancia(instanciaId).success(function(data){
-           var instanciasVariables = [];
-           instanciasVariables = data;
-            for (var variable in instanciasVariables){
-                var variables = [];
-                variables.nombre = variable ;
-                variables.tipo = "String";
-                variables.valor = instanciasVariables[variable];
-                variables.modificar = false;
-                $scope.pinstanVariables.push(variables);
+        $scope.completarEventoDatos.eventName = $scope.eventosXInstancia[pos].eventName;
+        $scope.completarEventoDatos.executionId = $scope.eventosXInstancia[pos].executionId;
+        
+        taskeventlistService.putCompletarEvento($scope.completarEventoDatos).success(function(data){
+           if (data.success) {
+                alert("Se completo el evento");
+            } else {
+               alert("No se completo el evento");
             }
         });
     };
 
+
+
+    $scope.ListarEventos = function (instanciaId) {
+        taskeventlistService.getEventos(instanciaId).success(function (data) {
+            if (data.success) {
+                $scope.eventosXInstancia = data.data;
+            } else {
+                $scope.eventosXInstancia = [];
+            }
+            //console.log($scope.tareasXInstancia);
+        });
+    };
+
+
     $scope.$on('instanciaId', function (evt, msg) {
         console.log(msg);
-        $scope.ListarTareas(msg);
-        $scope.pinstanVariables = [];
-        $scope.CargarVariablesInstancia(msg);
+        $scope.ListarEventos(msg.pinstanciaId)
     });
-
-
-
-
 });

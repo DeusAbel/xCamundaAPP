@@ -12,6 +12,10 @@ app.service('tasklistService', function ($http) {
         getVariablesXInstancia: function (instanciaId) {
             global = $http.get(path + "/instancias/instancia/" + instanciaId + "/variables/");
             return global;
+        },
+        putCompletarTarea2: function (tarea) {
+            global = $http.put(path + "/tareas/taskComplete2",tarea);
+            return global;
         }
     }
 });
