@@ -23,7 +23,7 @@ app.controller('mainController', function ($scope, mainService, loginService){
 		$scope.$parent.$broadcast('actualizar_instancias', $scope.proceso_actual);	
 	}
 	
-	//$scope.getProcesos();
+	
 	$scope.$on('actualizar_procesos', function (evt, msg) {
 		setTimeout(function()
 		{			
