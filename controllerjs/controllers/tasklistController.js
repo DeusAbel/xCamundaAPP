@@ -32,8 +32,7 @@ app.controller('tasklistController', function ($scope, tasklistService) {
     ];
 
     $scope.CompletarTarea = function (dato) {
-        var pos = $scope.tareasXInstancia.indexOf(dato);
-
+        console.log($scope.pinstanVariables);
 
     };
 

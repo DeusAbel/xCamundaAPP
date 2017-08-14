@@ -38,14 +38,14 @@ app.controller('pinstanscreateController', function ($scope, pinstanscreateServi
 
     $scope.AgregarVariable = function () {
 
-        $scope.nuevaVariable = {
+        var nuevaVariable = {
             "nombre": "",
             "tipo": "",
             "valor": "",
             "modificar": false
         };
 
-        $scope.pinstanVariables.push($scope.nuevaVariable)
+        $scope.pinstanVariables.push(nuevaVariable)
     };
 
 
@@ -74,12 +74,21 @@ app.controller('pinstanscreateController', function ($scope, pinstanscreateServi
             $scope.enviarVariables.push(nVariable)
         }
 
-        alert("proceso inciado");
+        
         $scope.EnviarIniciarProceso.idproceso = $scope.$parent.proceso_actual;
         $scope.EnviarIniciarProceso.person = $scope.$parent.usuario.usuario;
-        
-        pinstanscreateService.postIniciarProceso($scope.EnviarIniciarProceso);
-        
+
+        pinstanscreateService.postIniciarProceso($scope.EnviarIniciarProceso).success(function (data) {
+            if (data.success)
+                {
+                    alert("proceso inciado");
+                }
+            else
+                {
+                    alert("proceso no iniciado");
+                }
+        });
+
 
         $scope.pinstanVariables = [];
         $scope.enviarVariables = [];

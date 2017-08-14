@@ -75,7 +75,7 @@
                                 <tbody>
                                     <tr ng-repeat="pinstanVariable in pinstanVariables">
                                         <td> <input type="text" class="form-control" ng-model="pinstanVariable.nombre" ng-disabled="pinstanVariable.modificar"></td>
-                                        <td> <select class="form-control" ng-disabled="pinstanVariable.modificar">
+                                        <td> <select class="form-control" ng-disabled="pinstanVariable.modificar" ng-model="pinstanVariable.tipo">
                                             <option  ng-repeat="row in tipoVariable" value="{{row.valor}}" 
                                                     ng-selected="row.valor == pinstanVariable.tipo" >{{row.texto}}</option>
                                             </select></td>
@@ -87,7 +87,7 @@
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Completar Tarea</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="CompletarTarea()">Completar Tarea</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
