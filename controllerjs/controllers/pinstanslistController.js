@@ -17,7 +17,7 @@ app.controller('pinstanslistController', function ($scope, pinstanslistService) 
     $scope.getInstansProceso = function () {
 
         pinstanslistService.getInstansProceso($scope.$parent.proceso_actual).success(function (data) {
-            $scope.pinstanslist = data;
+            $scope.pinstanslist = $scope.ValidarDatosSrv(data);
         });
     }
 
@@ -26,7 +26,7 @@ app.controller('pinstanslistController', function ($scope, pinstanslistService) 
         //console.log($scope.pinstanslist);
         //console.log($scope.pinstanslist[pos].instanceid);
         $scope.pinstanciaId = $scope.pinstanslist[pos].instanceid;
-        $scope.$parent.$parent.$broadcast('instanciaId', $scope.pinstanciaId);
+        $scope.$parent.$parent.$broadcast('instanciaId', { "pinstanciaId": $scope.pinstanciaId, "pbusineesKey":$scope.pinstanslist[pos].businesskey});
         console.log($scope.pinstanciaId);
     }
 
@@ -34,7 +34,7 @@ app.controller('pinstanslistController', function ($scope, pinstanslistService) 
         var pos = $scope.pinstanslist.indexOf(dato);
         console.log($scope.pinstanslist[pos].instanceid);
         pinstanslistService.deleteInstanciaProceso($scope.pinstanslist[pos].instanceid).success(function (data) {
-            alert(data.respuesta);
+            alert(data.mensaje);
         });
     }
 
