@@ -4,7 +4,7 @@ app.controller('tasklistController', function ($scope, tasklistService) {
     console.log("tasklistController");
 
     $scope.tareasXInstancia = [];
-    
+
     $scope.pinstanVariables = [
 //        {
 //            "nombre": "",
@@ -13,6 +13,8 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 //            "modificar": false
 //        }
     ];
+    $scope.pbusineesKey = "";
+    $scope.pinstanciasId = "";
 
     $scope.tipoVariable = [
         {
@@ -31,7 +33,7 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 
     $scope.CompletarTarea = function (dato) {
         var pos = $scope.tareasXInstancia.indexOf(dato);
-        
+
 
     };
 
@@ -51,7 +53,7 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 
     $scope.AgregarVariable = function () {
 
-         var nuevaVariable = {
+        var nuevaVariable = {
             "nombre": "",
             "tipo": "",
             "valor": "",
@@ -63,18 +65,27 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 
     $scope.ListarTareas = function (instanciaId) {
         tasklistService.getTareas(instanciaId).success(function (data) {
-            $scope.tareasXInstancia = data;
+            //$scope.tareasXInstancia = data.data;
+            if (data.success) {
+                $scope.tareasXInstancia = data.data;
+            } else {
+                $scope.tareasXInstancia = [];
+            }
             //console.log($scope.tareasXInstancia);
         });
     };
-    
-    $scope.CargarVariablesInstancia = function (instanciaId){
-        tasklistService.getVariablesXInstancia(instanciaId).success(function(data){
-           var instanciasVariables = [];
-           instanciasVariables = data;
-            for (var variable in instanciasVariables){
+
+    $scope.CargarVariablesInstancia = function (instanciaId) {
+        tasklistService.getVariablesXInstancia(instanciaId).success(function (data) {
+            var instanciasVariables = [];
+            if (data.success) {
+                instanciasVariables = data.data;
+            } else {
+                instanciasVariables = [];
+            }
+            for (var variable in instanciasVariables) {
                 var variables = [];
-                variables.nombre = variable ;
+                variables.nombre = variable;
                 variables.tipo = "String";
                 variables.valor = instanciasVariables[variable];
                 variables.modificar = false;
@@ -84,10 +95,13 @@ app.controller('tasklistController', function ($scope, tasklistService) {
     };
 
     $scope.$on('instanciaId', function (evt, msg) {
-        console.log(msg);
-        $scope.ListarTareas(msg);
+        $scope.pinstanciasId = msg.pinstanciaId;
+        $scope.pbusineesKey = msg.pbusineesKey;
+        
+        console.log($scope.pinstanciasId);
+        $scope.ListarTareas($scope.pinstanciasId);
         $scope.pinstanVariables = [];
-        $scope.CargarVariablesInstancia(msg);
+        $scope.CargarVariablesInstancia($scope.pinstanciasId);
     });
 
 
