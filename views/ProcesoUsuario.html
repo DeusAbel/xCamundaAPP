@@ -1,6 +1,6 @@
 
 <!-- Modal -->
-<div id="usuarioForm" class="modal fade" role="dialog">
+<div id="ProcesoUsuarioForm" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -12,16 +12,17 @@
       </div>
         <form style="margin: 10px" class="form-inline">
           <div class="form-group">
-              <label for="email">USUARIO</label>
-              <input type="text" class="form-control" id="username" ng-model="usuarioC.username">
+              <label for="email">USUARIO: </label>
+              <input type="text" class="form-control" id="usuario" ng-model="usuario.username">
           </div>
           
           <div class="form-group" style="margin-left:20px">
-              <label for="pwd">CLAVE:</label>
-              <input type="password" class="form-control" id="password" ng-model="usuarioC.password">
+              <label for="pwd">PROCESO: </label>
+              <input type="text" class="form-control" id="proceso" ng-model="procesoUsuario.proceso">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="AgregarUsuario(usuarioC)">Aceptar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="permisoProcesoUsuarioLectura()">Solo lectura</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="permisoProcesoUsuarioCrear()">Crear y leer instancia</button>
             <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
           </div>
         </form>

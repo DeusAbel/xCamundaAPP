@@ -13,17 +13,22 @@ angular.module('xCamundaAPP')
         },
         getProcesosUsuario: function(usuario_id){
             global = $http.get("http://localhost:8080/sig/camunda/procesos/" + usuario_id);
-            //console.log("user: " + usuario_id);
             return global;
         },       
         getProcesos: function(){
             global = $http.get("http://localhost:8080/sig/camunda/procesos/demo");
             return global;
         },
-        agregarProcesoUsuario: function(){
-            global = $http.get("http://localhost:8080/sig/camunda/procesos/demo");
+        permisoProcesoUsuarioCrear: function(procesoUsuario){
+            alert(procesoUsuario.usuario + " / " + procesoUsuario.proceso);
+            global = $http.post("http://localhost:8080/sig/camunda/usuarios/autoriza_crear",procesoUsuario);
             return global;
-        }, 	
+        },
+        permisoProcesoUsuarioLectura: function(procesoUsuario){
+            alert(procesoUsuario.usuario + " / " + procesoUsuario.proceso);
+            global = $http.post("http://localhost:8080/sig/camunda/usuarios/autoriza_lectura",procesoUsuario);
+            return global;
+        } 	
 	}
     
 });

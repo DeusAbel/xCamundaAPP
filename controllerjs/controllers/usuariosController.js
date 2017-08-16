@@ -27,7 +27,12 @@ app.controller('usuariosController', function ($scope, usuariosService) {
    
     ];
 
+    $scope.procesoUsuario = {"proceso":"proceso"};
+
    
+    $scope.SelectUsuario  = function(index){
+        $scope.usuario.username = $scope.usuarios[index];         
+    };
 
     
 
@@ -70,13 +75,35 @@ app.controller('usuariosController', function ($scope, usuariosService) {
         });		
     }
 
-    $scope.agregarProcesoUsuario = function(){
-		usuariosService.getUsuarios().success(function(data){			
-            if (data.success) {
-                $scope.usuarios = data.data; 
-                $scope.getProcesos();              
+    $scope.permisoProcesoUsuarioCrear = function(){
+        var tmp = {
+            "usuario" : "",
+            "proceso" : ""
+        };
+        tmp.usuario=$scope.usuario.username;
+        tmp.proceso=$scope.procesoUsuario.proceso;
+		usuariosService.permisoProcesoUsuarioCrear(tmp).success(function(data){			
+            if (data.success) {                 
+                $scope.getUsuarios();              
             } else {
-                alert("Error al obtener lista de usuarios");
+                alert("Error asignando permiso para instanciar Proceso");
+            }
+            
+        });		
+    }
+
+    $scope.permisoProcesoUsuarioLectura = function(){
+        var tmp = {
+            "usuario" : "",
+            "proceso" : ""
+        };
+        tmp.usuario=$scope.usuario.username;
+        tmp.proceso=$scope.procesoUsuario.proceso;
+		usuariosService.permisoProcesoUsuarioLectura(tmp).success(function(data){			
+            if (data.success) {                 
+                $scope.getUsuarios();              
+            } else {
+                alert("Error asignando permiso para instanciar Proceso");
             }
             
         });		
@@ -87,8 +114,8 @@ app.controller('usuariosController', function ($scope, usuariosService) {
             
             if (data.success) {
                 setTimeout(function() {
-                    console.log($scope.procesos);     
-                }, 3000);
+                        
+                }, 1000);
                 $scope.procesos[index]=data.data;
                 
             } else {
