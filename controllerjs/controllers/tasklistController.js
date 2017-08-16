@@ -9,17 +9,10 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 
     $scope.completarTareaDatos = {
         "bpmtaskid": "",
-        "variables": []
+        "variables": $scope.CompletarVariables
     }
 
-    $scope.pinstanVariables = [
-//        {
-//            "nombre": "",
-//            "tipo":"",
-//            "valor":"",
-//            "modificar": false
-//        }
-    ];
+    $scope.pinstanVariables = [];
     $scope.pbusineesKey = "";
     $scope.pinstanciasId = "";
 
@@ -42,14 +35,18 @@ app.controller('tasklistController', function ($scope, tasklistService) {
     $scope.ModalCompletarTarea = function (dato) {
         var pos = $scope.tareasXInstancia.indexOf(dato);
         $scope.taskId = $scope.tareasXInstancia[pos].id;
+        
+        $scope.pinstanVariables = [];
+        $scope.CargarVariablesInstancia($scope.pinstanciasId);
     };
 
     $scope.CompletarTarea = function () {
         //console.log($scope.pinstanVariables);
         $scope.CompletarVariables = [];
         for (var variable in $scope.pinstanVariables) {
-            var nvariable = [];
+            var nvariable = {};
             nvariable.nombre = $scope.pinstanVariables[variable].nombre;
+            nvariable.tipo = $scope.pinstanVariables[variable].tipo;
             nvariable.valor = $scope.pinstanVariables[variable].valor;
             //console.log(nvariable);
             $scope.CompletarVariables.push(nvariable);
@@ -58,11 +55,12 @@ app.controller('tasklistController', function ($scope, tasklistService) {
         $scope.completarTareaDatos.bpmtaskid = $scope.taskId;
         $scope.completarTareaDatos.variables = $scope.CompletarVariables;
         //console.log($scope.CompletarVariables);
-        console.log($scope.completarTareaDatos);
+        //console.log($scope.completarTareaDatos);
 
         tasklistService.putCompletarTarea2($scope.completarTareaDatos).success(function (data) {
             if (data.success) {
                 alert("Se completo la tarea");
+                $scope.ListarTareas($scope.pinstanciasId);
             } else {
                 alert("no se completo la tarea");
             }
@@ -132,8 +130,6 @@ app.controller('tasklistController', function ($scope, tasklistService) {
 
         console.log($scope.pinstanciasId);
         $scope.ListarTareas($scope.pinstanciasId);
-        $scope.pinstanVariables = [];
-        $scope.CargarVariablesInstancia($scope.pinstanciasId);
     });
 
 

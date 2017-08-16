@@ -60,35 +60,25 @@ app.controller('pinstanscreateController', function ($scope, pinstanscreateServi
 
 
     $scope.IniciarProceso = function () {
-        var nVariable = {
-            "nombre": "",
-            "tipo": "",
-            "valor": ""
-        }
-
+        var nVariable = {}
         for (var variable in $scope.pinstanVariables) {
-            //var nVariable = {};
             nVariable.nombre = $scope.pinstanVariables[variable].nombre;
             nVariable.tipo = $scope.pinstanVariables[variable].tipo;
             nVariable.valor = $scope.pinstanVariables[variable].valor;
             $scope.enviarVariables.push(nVariable)
         }
 
-        
         $scope.EnviarIniciarProceso.idproceso = $scope.$parent.proceso_actual;
         $scope.EnviarIniciarProceso.person = $scope.$parent.usuario.usuario;
 
         pinstanscreateService.postIniciarProceso($scope.EnviarIniciarProceso).success(function (data) {
-            if (data.success)
-                {
-                    alert("proceso inciado");
-                }
-            else
-                {
-                    alert("proceso no iniciado");
-                }
+            if (data.success) {
+                alert("proceso inciado");
+                $scope.$parent.$parent.$parent.$broadcast('actualizarListaInstancias', {});
+            } else {
+                alert("proceso no iniciado");
+            }
         });
-
 
         $scope.pinstanVariables = [];
         $scope.enviarVariables = [];

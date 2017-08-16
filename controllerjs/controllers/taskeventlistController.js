@@ -9,23 +9,24 @@ app.controller('taskeventlistController', function ($scope, taskeventlistService
         "eventName": "",
         "executionId": "",
     };
+    
+    $scope.pInstanciaId = "";
 
     $scope.CompletarEvento = function (dato) {
-        var pos  = $scope.eventosXInstancia.indexOf(dato);
-        
+        var pos = $scope.eventosXInstancia.indexOf(dato);
+
         $scope.completarEventoDatos.eventName = $scope.eventosXInstancia[pos].eventName;
         $scope.completarEventoDatos.executionId = $scope.eventosXInstancia[pos].executionId;
-        
-        taskeventlistService.putCompletarEvento($scope.completarEventoDatos).success(function(data){
-           if (data.success) {
+
+        taskeventlistService.putCompletarEvento($scope.completarEventoDatos).success(function (data) {
+            if (data.success) {
                 alert("Se completo el evento");
+                $scope.ListarEventos($scope.pInstanciaId);
             } else {
-               alert("No se completo el evento");
+                alert("No se completo el evento");
             }
         });
     };
-
-
 
     $scope.ListarEventos = function (instanciaId) {
         taskeventlistService.getEventos(instanciaId).success(function (data) {
@@ -34,13 +35,12 @@ app.controller('taskeventlistController', function ($scope, taskeventlistService
             } else {
                 $scope.eventosXInstancia = [];
             }
-            //console.log($scope.tareasXInstancia);
         });
     };
 
-
     $scope.$on('instanciaId', function (evt, msg) {
-        console.log(msg);
-        $scope.ListarEventos(msg.pinstanciaId)
+        //console.log(msg);
+        $scope.pInstanciaId = msg.pinstanciaId;
+        $scope.ListarEventos($scope.pInstanciaId);
     });
 });
