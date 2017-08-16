@@ -29,8 +29,6 @@ app.controller('usuariosController', function ($scope, usuariosService) {
         "ptest2"
     ];
 
-    
-
     $scope.AgregarUsuario = function () {
 
         usuariosService.setUsuario($scope.usuarioC).success(function (data){
@@ -74,37 +72,6 @@ app.controller('usuariosController', function ($scope, usuariosService) {
             }
         });		
 	}
-
-
-    $scope.CargarVariablesInstancia = function (instanciaId) {
-        tasklistService.getVariablesXInstancia(instanciaId).success(function (data) {
-            var instanciasVariables = [];
-            if (data.success) {
-                instanciasVariables = data.data;
-            } else {
-                instanciasVariables = [];
-            }
-            for (var variable in instanciasVariables) {
-                var variables = [];
-                variables.nombre = variable;
-                variables.tipo = "String";
-                variables.valor = instanciasVariables[variable];
-                variables.modificar = false;
-                $scope.pinstanVariables.push(variables);
-            }
-        });
-    };
-
-    $scope.$on('instanciaId', function (evt, msg) {
-        $scope.pinstanciasId = msg.pinstanciaId;
-        $scope.pbusineesKey = msg.pbusineesKey;
-        
-        console.log($scope.pinstanciasId);
-        $scope.ListarTareas($scope.pinstanciasId);
-        $scope.pinstanVariables = [];
-        $scope.CargarVariablesInstancia($scope.pinstanciasId);
-    });
-
 
     $scope.getUsuarios();
 

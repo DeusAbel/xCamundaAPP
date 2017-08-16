@@ -44,6 +44,13 @@ app.controller('pinstanslistController', function ($scope, pinstanslistService) 
 
     $scope.$on('actualizar_instancias', function (evt, msg) {
         $scope.getInstansProceso();
+        
+        
+         $scope.$parent.$parent.$broadcast('instanciaId', {
+            "pinstanciaId": ":D",
+            "pbusineesKey": ":D"
+        });
+        
     });
 
     $scope.$on('actualizarListaInstancias', function (evt, msg) {
