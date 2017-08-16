@@ -20,25 +20,24 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center" id="USUARIO" type="text">USUARIO</th>
-                                        <th class="text-center" id="PROCESOS" type="text">PROCESOS</th>                                        
-                                        <th>MODIFICAR</th>
-                                        <th>ELIMINAR</th>
+                                        <th class="text-center" id="PROCESOS" type="text">PROCESOS</th>                                       
+                                        <th>AgregarProceso</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="usuario in usuarios">
                                         <td> <input type="text" class="form-control" ng-model="usuario" disabled="true" /></td>  
                                                                             
-                                        <td> <select class="form-control" ng-disabled="pinstanVariable.modificar" ng-model="pinstanVariable.tipo">
-                                            <button class="btn btn-info" type="button" data-target="#AgregarProceso" data-toggle="modal"> + </button>
-                                            <option  ng-repeat="proceso in procesos" value="{{proceso}}" 
-                                                    ng-selected="row.valor == pinstanVariable.tipo" >{{row.texto}}</option>
-                                            </select>
+                                        <td> 
+                                            
+                                            <textarea ng-model="procesos" class="form-control" disabled = "true">
+                                                
+                                            </textarea>
                                             
                                         </td>
                                         
-                                        <td><button class="btn btn-info form-control" ng-click="ModificarUsuario(usuario.id)" value="Modificar">{{usuario.modificar && 'Modificar' || 'Guardar' }}</button></td>
-                                        <td><button class="btn btn-Warning form-control" ng-click="EliminarUsuario(usuario.id)" value="Eliminar">Eliminar</button></td>
+                                        
+                                        <td><button class="btn btn-info form-control"    value="Eliminar">Agregar Proceso</button></td>
                                         
                                     </tr>
                                 </tbody>
