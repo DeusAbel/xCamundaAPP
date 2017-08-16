@@ -1,86 +1,80 @@
 var app = angular.module('xCamundaAPP');
-app.controller('usuariosController', function ($scope, tasklistService) {
+app.controller('usuariosController', function ($scope, usuariosService) {
 
     console.log("usuariosController");
 
     $scope.usuario = {
-        "usuario" : "test",
-        "clave" : "test",
+        "username" : "",
+        "firstName" : "",
+        "lastName" : "",
+        "password" : "",
+        "email" : ""
+    };
+
+    $scope.usuarioC = {
+        "username" : "test",
+        "firstName" : "user test",
+        "lastName" : "user test",
+        "password" : "test",
+        "email" : "test@test.net"
     };
 
     $scope.usuarios =[
-        "test1",
-        "test2"
+        " ",
+        " "
     ];
 
-    $scope.pinstanVariables = [
-//        {
-//            "nombre": "",
-//            "tipo":"",
-//            "valor":"",
-//            "modificar": false
-//        }
-    ];
-    $scope.pbusineesKey = "";
-    $scope.pinstanciasId = "";
-
-    $scope.tipoVariable = [
-        {
-            "valor": "Integer",
-            "texto": "Numero"
-        },
-        {
-            "valor": "String",
-            "texto": "Texto"
-        },
-        {
-            "valor": "Date",
-            "texto": "Fecha"
-        }
+    $scope.procesos =[
+        "ptest1",
+        "ptest2"
     ];
 
-    $scope.CompletarTarea = function (dato) {
-        console.log($scope.pinstanVariables);
+    
 
-    };
+    $scope.AgregarUsuario = function () {
 
-    $scope.ModificarVariable = function (dato) {
-        var pos = $scope.pinstanVariables.indexOf(dato);
-        if ($scope.pinstanVariables[pos].modificar) {
-            $scope.pinstanVariables[pos].modificar = false;
-        } else {
-            $scope.pinstanVariables[pos].modificar = true;
-        }
-    };
-
-    $scope.EliminarVariable = function (dato) {
-        var pos = $scope.pinstanVariables.indexOf(dato);
-        $scope.pinstanVariables.splice(pos, 1);
-    };
-
-    $scope.AgregarVariable = function () {
-
-        var nuevaVariable = {
-            "nombre": "",
-            "tipo": "",
-            "valor": "",
-            "modificar": false
-        };
-
-        $scope.pinstanVariables.push(nuevaVariable)
-    };
-
-    $scope.ListarTareas = function (instanciaId) {
-        tasklistService.getTareas(instanciaId).success(function (data) {
-            //$scope.tareasXInstancia = data.data;
+        usuariosService.setUsuario($scope.usuarioC).success(function (data){
             if (data.success) {
-                $scope.tareasXInstancia = data.data;
+                console.log($scope.usuarioC);
+                
+                $scope.usuarios.push($scope.usuarioC.usuario)
+                console.log($scope.usuarioC);
             } else {
-                $scope.tareasXInstancia = [];
+                alert("Error registrando usuario");
             }
-            //console.log($scope.tareasXInstancia);
         });
     };
+
+	$scope.getProcesos = function(){
+		usuariosService.getProcesos().success(function(data){			
+            if (data.success) {
+                $scope.procesos = data.data;  
+            } else {
+                alert("Error al obtener lista de procesos");
+            }
+        });		
+    }
+
+    $scope.getUsuarios = function(){
+		usuariosService.getUsuarios().success(function(data){			
+            if (data.success) {
+                $scope.usuarios = data.data;  
+            } else {
+                alert("Error al obtener lista de usuarios");
+            }
+        });		
+    }
+    
+    $scope.getProcesosUsuario = function(){
+		mainService.getProcesosUsuario($scope.usuario.username).success(function(data){			                        
+            if (data.success) {
+                $scope.procesos = data.data;  
+            } else {
+                alert("Error al obtener lista de procesos del usuario");
+            }
+        });		
+	}
+
 
     $scope.CargarVariablesInstancia = function (instanciaId) {
         tasklistService.getVariablesXInstancia(instanciaId).success(function (data) {
@@ -112,6 +106,6 @@ app.controller('usuariosController', function ($scope, tasklistService) {
     });
 
 
-
+    $scope.getUsuarios();
 
 });
