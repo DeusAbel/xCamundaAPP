@@ -128,7 +128,7 @@ app.controller('tasklistController', function ($scope, tasklistService) {
         $scope.pinstanciasId = msg.pinstanciaId;
         $scope.pbusineesKey = msg.pbusineesKey;
 
-        console.log($scope.pinstanciasId);
+        //console.log($scope.pinstanciasId);
         $scope.ListarTareas($scope.pinstanciasId);
     });
 

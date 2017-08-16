@@ -16,7 +16,7 @@ app.controller('mainController', function ($scope, mainService, loginService){
 	$scope.getProcesos = function(){
 		console.log("user 3 : " + $scope.usuario.usuario + "/"+ $scope.usuario.password);
 		mainService.getProcesosUsuario($scope.usuario.usuario).success(function(data){			
-			$scope.procesos = $scope.ValidarDatosSrv(data);            			
+			$scope.procesos = $scope.ValidarDatosSrv(data);           			
         });		
 	}
 
