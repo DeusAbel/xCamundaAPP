@@ -20,14 +20,14 @@ app.controller('usuariosController', function ($scope, usuariosService) {
     };
 
     $scope.usuarios =[
-        " ",
-        " "
+
     ];
 
     $scope.procesos =[
-        "ptest1",
-        "ptest2"
+   
     ];
+
+   
 
     
 
@@ -36,8 +36,8 @@ app.controller('usuariosController', function ($scope, usuariosService) {
         usuariosService.setUsuario($scope.usuarioC).success(function (data){
             if (data.success) {
                 console.log($scope.usuarioC);
-                
-                $scope.usuarios.push($scope.usuarioC.usuario)
+                $scope.getUsuarios();
+                //$scope.usuarios.push($scope.usuarioC.usuario)
                 console.log($scope.usuarioC);
             } else {
                 alert("Error registrando usuario");
@@ -47,8 +47,11 @@ app.controller('usuariosController', function ($scope, usuariosService) {
 
 	$scope.getProcesos = function(){
 		usuariosService.getProcesos().success(function(data){			
-            if (data.success) {
-                $scope.procesos = data.data;  
+            if (data.success) {                
+                for (i=0; i<$scope.usuarios.length; i++){
+                    $scope.getProcesosUsuario($scope.usuarios[i],i);  
+                }
+                //$scope.procesos = data.data;  
             } else {
                 alert("Error al obtener lista de procesos");
             }
@@ -58,54 +61,45 @@ app.controller('usuariosController', function ($scope, usuariosService) {
     $scope.getUsuarios = function(){
 		usuariosService.getUsuarios().success(function(data){			
             if (data.success) {
-                $scope.usuarios = data.data;  
+                $scope.usuarios = data.data; 
+                $scope.getProcesos();              
             } else {
                 alert("Error al obtener lista de usuarios");
             }
+            
+        });		
+    }
+
+    $scope.agregarProcesoUsuario = function(){
+		usuariosService.getUsuarios().success(function(data){			
+            if (data.success) {
+                $scope.usuarios = data.data; 
+                $scope.getProcesos();              
+            } else {
+                alert("Error al obtener lista de usuarios");
+            }
+            
         });		
     }
     
-    $scope.getProcesosUsuario = function(){
-		mainService.getProcesosUsuario($scope.usuario.username).success(function(data){			                        
+    $scope.getProcesosUsuario = function(usuario_id,index){
+		usuariosService.getProcesosUsuario(usuario_id).success(function(data){	
+            
             if (data.success) {
-                $scope.procesos = data.data;  
+                setTimeout(function() {
+                    console.log($scope.procesos);     
+                }, 3000);
+                $scope.procesos[index]=data.data;
+                
             } else {
                 alert("Error al obtener lista de procesos del usuario");
             }
         });		
 	}
 
-
-    $scope.CargarVariablesInstancia = function (instanciaId) {
-        tasklistService.getVariablesXInstancia(instanciaId).success(function (data) {
-            var instanciasVariables = [];
-            if (data.success) {
-                instanciasVariables = data.data;
-            } else {
-                instanciasVariables = [];
-            }
-            for (var variable in instanciasVariables) {
-                var variables = [];
-                variables.nombre = variable;
-                variables.tipo = "String";
-                variables.valor = instanciasVariables[variable];
-                variables.modificar = false;
-                $scope.pinstanVariables.push(variables);
-            }
-        });
-    };
-
-    $scope.$on('instanciaId', function (evt, msg) {
-        $scope.pinstanciasId = msg.pinstanciaId;
-        $scope.pbusineesKey = msg.pbusineesKey;
-        
-        console.log($scope.pinstanciasId);
-        $scope.ListarTareas($scope.pinstanciasId);
-        $scope.pinstanVariables = [];
-        $scope.CargarVariablesInstancia($scope.pinstanciasId);
-    });
-
-
     $scope.getUsuarios();
+
+
+
 
 });
